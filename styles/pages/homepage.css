@@ -33,3 +33,19 @@
   width: 16px;
   background: var(--primary);
 }
+
+/* Sponsors slider pagination */
+.sponsors-pagination .swiper-pagination-bullet {
+  background: #ccc;
+  height: 8px;
+  width: 8px;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  margin: 0 !important;
+  opacity: 1 !important;
+}
+
+.sponsors-pagination .swiper-pagination-bullet-active {
+  width: 16px;
+  background: var(--primary);
+}

@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import { dbConnect } from '@helpers/db';
 import Page from '@/models/Page';
 import HeroSection from '@/components/Homepage/HeroSection';
+import SponsorsSection from '@/components/Homepage/SponsorsSection';
 
 // ✅ client-only sections
 const BlueBanner = dynamic(() => import('@/components/Homepage/BlueBanner'), { ssr: false });
@@ -32,9 +33,12 @@ export default async function HomePage() {
   const section2 = data.section2 || {};
   const section3 = data.section3 || {};
 
+  
+
   return (
     <>
       <HeroSection data={section1} />
+      <SponsorsSection />
       <FeaturesSection data={section3} />
       <BlueBanner data={section2} />
       <NewsSlider />

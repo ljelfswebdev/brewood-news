@@ -4,6 +4,12 @@ export const SPONSORS_POST_TEMPLATE = [
     key: 'main',
     label: 'Sponsor Content',
     fields: [
+
+      {
+        name: 'isPrimarySponsor',
+        label: 'Primary Sponsor',
+        type: 'checkbox',
+      },
       {
         name: 'image',
         label: 'Sponsor Image',
@@ -21,6 +27,8 @@ export const SPONSORS_POST_TEMPLATE = [
         label: 'Description',
         type: 'rich',
       },
+
+ 
     ],
   },
 ];
