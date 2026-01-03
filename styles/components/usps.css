@@ -1,0 +1,4 @@
+/* USPS Swiper styles */
+.usps .swiper-button-disabled {
+  @apply opacity-70 cursor-not-allowed;
+}

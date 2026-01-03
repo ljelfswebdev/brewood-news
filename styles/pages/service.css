@@ -1,0 +1,6 @@
+.swiper-button-disabled{
+    @apply
+    opacity-70
+    cursor-not-allowed
+    ;
+}

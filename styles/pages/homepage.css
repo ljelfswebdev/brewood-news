@@ -1,0 +1,35 @@
+.hero-pagination .swiper-pagination-bullet {
+    background: white;
+    height: 8px;
+    width: 8px;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    margin:0 !important;
+    opacity: 1 !important;
+
+}
+.hero-pagination .swiper-pagination-bullet-active {
+
+    width: 16px;
+    opacity: 1;
+
+    @apply
+    bg-primary
+    ;
+}
+
+/* News slider pagination */
+.news-pagination .swiper-pagination-bullet {
+  background: #ccc;
+  height: 8px;
+  width: 8px;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  margin: 0 !important;
+  opacity: 1 !important;
+}
+
+.news-pagination .swiper-pagination-bullet-active {
+  width: 16px;
+  background: var(--primary);
+}

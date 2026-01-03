@@ -1,0 +1,135 @@
+/* ===============================
+   FORM LAYOUT
+   =============================== */
+.form-col-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-col-1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 16px;
+}
+
+/* ===============================
+   GLOBAL INPUT BASELINE (one place)
+   - Applies everywhere (even outside .form-input)
+   - Only standard text inputs + textarea (+ select if you want it styled)
+   =============================== */
+.input,
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='url'],
+input[type='number'],
+input[type='search'],
+textarea,
+select {
+  border: 2px solid var(--grey);
+  border-radius: 5px;
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+  transition: outline 0.2s ease, border-color 0.2s ease;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 8px 16px;
+}
+
+/* Sizes */
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='url'],
+input[type='number'],
+input[type='search'] {
+  height: 50px;
+}
+
+textarea {
+  height: 200px;
+  resize: vertical;
+  padding: 12px;
+}
+
+/* Hover / focus (NO placeholder-shown nonsense) */
+.input:hover,
+input[type='text']:hover,
+input[type='email']:hover,
+input[type='password']:hover,
+input[type='url']:hover,
+input[type='number']:hover,
+input[type='search']:hover,
+textarea:hover,
+select:hover,
+.input:focus,
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='password']:focus,
+input[type='url']:focus,
+input[type='number']:focus,
+input[type='search']:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--primary);
+}
+
+/* Error outline (global) */
+.input.form-error,
+input.form-error[type='text'],
+input.form-error[type='email'],
+input.form-error[type='password'],
+input.form-error[type='url'],
+input.form-error[type='number'],
+input.form-error[type='search'],
+textarea.form-error,
+select.form-error {
+  outline: 2px solid #ff0000;
+}
+
+/* ===============================
+   FIELD WRAPPER (label + error message)
+   =============================== */
+.form-input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+
+  label {
+    font-weight: 700;
+  }
+
+  /* Error message only when wrapper has .has-error */
+  &.has-error::after {
+    content: '*field required';
+    color: #ff0000;
+    font-size: 12px;
+    position: absolute;
+    left: 0;
+    bottom: -16px;
+  }
+}
+
+/* ===============================
+   REACT SELECT
+   =============================== */
+.react-select__control {
+  min-height: 44px !important;
+  border: 2px solid var(--grey) !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+}
+
+.react-select__control:hover,
+.react-select__control--is-focused,
+.react-select__control--menu-is-open {
+  border: 2px solid var(--primary) !important;
+  box-shadow: none !important;
+}

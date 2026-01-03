@@ -1,0 +1,389 @@
+[
+  {
+    "title": "Match Report: Last-Over Thriller Seals the Win",
+    "slug": "match-report-last-over-thriller-seals-the-win",
+    "postTypeKey": "news",
+    "templateKey": "news",
+    "status": "published",
+    "publishDate": "2025-11-19T19:28:57.644481Z",
+    "templateData": {
+      "banner": {
+        "bannerTitle": "Match Report: Last-Over Thriller Seals the Win"
+      },
+      "intro": {
+        "introText": "A tight finish, a couple of big swings, and plenty of nervous energy—here’s the quick recap.",
+        "introImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_intro_0.jpg"
+      },
+      "main": {
+        "heading": "Match Report: Last-Over Thriller Seals the Win",
+        "excerpt": "A late cameo and smart bowling at the death turned a close game into a memorable win.",
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><h2>Key moments</h2><ul><li>Early wickets slowed the chase</li><li>Middle-overs rebuild steadied the innings</li><li>Death-over yorkers clinched it</li></ul><p>Donec consequat sapien ut leo cursus rhoncus.</p>",
+        "featuredImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_featured_0.jpg",
+        "isTeamsheets": false,
+        "isMatchReports": true,
+        "isNews": false,
+        "isPlayers": false
+      },
+      "blocks": {
+        "blocks": [
+          {
+            "blockType": "richText",
+            "gallery": [],
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p><p>Curabitur nec lacus elit. Pellentesque convallis nisi ac augue pharetra.</p>"
+          },
+          {
+            "blockType": "imageGallery",
+            "gallery": [
+              { "image": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_gallery_0_0.jpg" },
+              { "image": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_gallery_0_1.jpg" }
+            ],
+            "content": ""
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Teamsheet: Saturday XI Named for the Home Fixture",
+    "slug": "teamsheet-saturday-xi-named-for-the-home-fixture",
+    "postTypeKey": "news",
+    "templateKey": "news",
+    "status": "published",
+    "publishDate": "2025-11-18T19:28:57.644481Z",
+    "templateData": {
+      "banner": {
+        "bannerTitle": "Teamsheet: Saturday XI Named for the Home Fixture"
+      },
+      "intro": {
+        "introText": "The squad’s locked in—here’s who’s taking the field this weekend (subject to last-minute changes).",
+        "introImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_intro_1.jpg"
+      },
+      "main": {
+        "heading": "Teamsheet: Saturday XI Named for the Home Fixture",
+        "excerpt": "A balanced XI with pace, spin, and depth in the batting order.",
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><h2>Selection notes</h2><ul><li>Two changes from last week</li><li>Extra spinner included</li><li>Keeper returns to the XI</li></ul><p>Nullam dui mi, vulputate ac metus at, semper varius orci.</p>",
+        "featuredImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_featured_1.jpg",
+        "isTeamsheets": true,
+        "isMatchReports": false,
+        "isNews": false,
+        "isPlayers": false
+      },
+      "blocks": {
+        "blocks": [
+          {
+            "blockType": "richText",
+            "gallery": [],
+            "content": "<p><strong>XI:</strong> Lorem, Ipsum, Dolor, Sit, Amet, Consectetur, Adipiscing, Elit, Sed, Non, Risus</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Club News: Nets Schedule Updated for Winter Training",
+    "slug": "club-news-nets-schedule-updated-for-winter-training",
+    "postTypeKey": "news",
+    "templateKey": "news",
+    "status": "published",
+    "publishDate": "2025-11-17T19:28:57.644481Z",
+    "templateData": {
+      "banner": {
+        "bannerTitle": "Club News: Nets Schedule Updated for Winter Training"
+      },
+      "intro": {
+        "introText": "New times, same energy—winter sessions are confirmed and everyone’s welcome.",
+        "introImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_intro_2.jpg"
+      },
+      "main": {
+        "heading": "Club News: Nets Schedule Updated for Winter Training",
+        "excerpt": "Training slots have shifted slightly—check the latest timetable before you turn up.",
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><p>Etiam porta sem malesuada magna mollis euismod.</p><h2>What’s changed</h2><ul><li>Start time moved by 30 minutes</li><li>Separate junior and senior lanes</li><li>Extra bowling machine slot</li></ul>",
+        "featuredImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_featured_2.jpg",
+        "isTeamsheets": false,
+        "isMatchReports": false,
+        "isNews": true,
+        "isPlayers": false
+      },
+      "blocks": {
+        "blocks": [
+          {
+            "blockType": "imageGallery",
+            "gallery": [
+              { "image": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_gallery_1_0.jpg" },
+              { "image": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_gallery_1_1.jpg" },
+              { "image": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_gallery_1_2.jpg" }
+            ],
+            "content": ""
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Player Spotlight: The Opener Who Never Panics",
+    "slug": "player-spotlight-the-opener-who-never-panics",
+    "postTypeKey": "news",
+    "templateKey": "news",
+    "status": "published",
+    "publishDate": "2025-11-16T19:28:57.644481Z",
+    "templateData": {
+      "banner": {
+        "bannerTitle": "Player Spotlight: The Opener Who Never Panics"
+      },
+      "intro": {
+        "introText": "Calm at the crease, ruthless on the bad ball—this week’s spotlight goes to our steady starter.",
+        "introImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_intro_3.jpg"
+      },
+      "main": {
+        "heading": "Player Spotlight: The Opener Who Never Panics",
+        "excerpt": "A quick Q&A about routines, favourite shots, and the one bowler they never want to face.",
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><h2>Quick Q&amp;A</h2><ul><li>Favourite shot: cover drive</li><li>Go-to snack: bananas</li><li>Pre-match ritual: headphones on</li></ul><p>Donec sed odio dui.</p>",
+        "featuredImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_featured_3.jpg",
+        "isTeamsheets": false,
+        "isMatchReports": false,
+        "isNews": false,
+        "isPlayers": true
+      },
+      "blocks": {
+        "blocks": [
+          {
+            "blockType": "richText",
+            "gallery": [],
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p><p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Match Report: Spin Choke Holds the Visitors to a Crawl",
+    "slug": "match-report-spin-choke-holds-the-visitors-to-a-crawl",
+    "postTypeKey": "news",
+    "templateKey": "news",
+    "status": "published",
+    "publishDate": "2025-11-15T19:28:57.644481Z",
+    "templateData": {
+      "banner": {
+        "bannerTitle": "Match Report: Spin Choke Holds the Visitors to a Crawl"
+      },
+      "intro": {
+        "introText": "Tight lines, clever fields, and patience—this one was won in the middle overs.",
+        "introImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_intro_4.jpg"
+      },
+      "main": {
+        "heading": "Match Report: Spin Choke Holds the Visitors to a Crawl",
+        "excerpt": "The run rate stalled, wickets followed, and the chase became straightforward.",
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><h2>Scorecard highlights</h2><ul><li>Three wickets for the spinner</li><li>Sharp catching in the ring</li><li>Controlled chase to finish</li></ul><p>Vestibulum id ligula porta felis euismod semper.</p>",
+        "featuredImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_featured_4.jpg",
+        "isTeamsheets": false,
+        "isMatchReports": true,
+        "isNews": false,
+        "isPlayers": false
+      },
+      "blocks": {
+        "blocks": [
+          {
+            "blockType": "imageGallery",
+            "gallery": [
+              { "image": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_gallery_2_0.jpg" },
+              { "image": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_gallery_2_1.jpg" }
+            ],
+            "content": ""
+          },
+          {
+            "blockType": "richText",
+            "gallery": [],
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec lacus elit.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Teamsheet: Sunday XI Confirmed with Two Debutants",
+    "slug": "teamsheet-sunday-xi-confirmed-with-two-debutants",
+    "postTypeKey": "news",
+    "templateKey": "news",
+    "status": "published",
+    "publishDate": "2025-11-14T19:28:57.644481Z",
+    "templateData": {
+      "banner": {
+        "bannerTitle": "Teamsheet: Sunday XI Confirmed with Two Debutants"
+      },
+      "intro": {
+        "introText": "A couple of fresh faces earn their first caps—welcome aboard!",
+        "introImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_intro_5.jpg"
+      },
+      "main": {
+        "heading": "Teamsheet: Sunday XI Confirmed with Two Debutants",
+        "excerpt": "A youth-boosted XI with plenty of athleticism in the field.",
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><h2>Notes</h2><ul><li>Two debutants in the middle order</li><li>One change in the pace attack</li><li>All-rounder to open the bowling</li></ul>",
+        "featuredImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_featured_5.jpg",
+        "isTeamsheets": true,
+        "isMatchReports": false,
+        "isNews": false,
+        "isPlayers": false
+      },
+      "blocks": {
+        "blocks": [
+          {
+            "blockType": "richText",
+            "gallery": [],
+            "content": "<p><strong>XI:</strong> Lorem, Ipsum, Dolor, Sit, Amet, Consectetur, Adipiscing, Elit, Sed, Non, Risus</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Club News: New Club Caps Arriving This Week",
+    "slug": "club-news-new-club-caps-arriving-this-week",
+    "postTypeKey": "news",
+    "templateKey": "news",
+    "status": "published",
+    "publishDate": "2025-11-13T19:28:57.644481Z",
+    "templateData": {
+      "banner": {
+        "bannerTitle": "Club News: New Club Caps Arriving This Week"
+      },
+      "intro": {
+        "introText": "Fresh stock is on the way—perfect timing for winter nets and pre-season socials.",
+        "introImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_intro_6.jpg"
+      },
+      "main": {
+        "heading": "Club News: New Club Caps Arriving This Week",
+        "excerpt": "Limited run of caps—first come, first served.",
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><h2>Details</h2><ul><li>Sizes: one size fits most</li><li>Colours: club navy</li><li>Pickup: clubhouse desk</li></ul><p>Aenean lacinia bibendum nulla sed consectetur.</p>",
+        "featuredImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_featured_6.jpg",
+        "isTeamsheets": false,
+        "isMatchReports": false,
+        "isNews": true,
+        "isPlayers": false
+      },
+      "blocks": {
+        "blocks": [
+          {
+            "blockType": "imageGallery",
+            "gallery": [
+              { "image": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_gallery_3_0.jpg" },
+              { "image": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_gallery_3_1.jpg" }
+            ],
+            "content": ""
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Player Spotlight: The Fast Bowler with a Swinging Yorker",
+    "slug": "player-spotlight-the-fast-bowler-with-a-swinging-yorker",
+    "postTypeKey": "news",
+    "templateKey": "news",
+    "status": "published",
+    "publishDate": "2025-11-12T19:28:57.644481Z",
+    "templateData": {
+      "banner": {
+        "bannerTitle": "Player Spotlight: The Fast Bowler with a Swinging Yorker"
+      },
+      "intro": {
+        "introText": "We caught up for a quick chat about training, new-ball rhythm, and favourite wickets.",
+        "introImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_intro_7.jpg"
+      },
+      "main": {
+        "heading": "Player Spotlight: The Fast Bowler with a Swinging Yorker",
+        "excerpt": "A few answers, a few laughs, and one bold claim about hitting the stumps every time.",
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><h2>Quick Q&amp;A</h2><ul><li>Dream wicket: first-ball bowled</li><li>Best skill: late swing</li><li>Favourite format: T20</li></ul>",
+        "featuredImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_featured_7.jpg",
+        "isTeamsheets": false,
+        "isMatchReports": false,
+        "isNews": false,
+        "isPlayers": true
+      },
+      "blocks": {
+        "blocks": [
+          {
+            "blockType": "richText",
+            "gallery": [],
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p><p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Match Report: Top Order Fires in a Comfortable Chase",
+    "slug": "match-report-top-order-fires-in-a-comfortable-chase",
+    "postTypeKey": "news",
+    "templateKey": "news",
+    "status": "published",
+    "publishDate": "2025-11-11T19:28:57.644481Z",
+    "templateData": {
+      "banner": {
+        "bannerTitle": "Match Report: Top Order Fires in a Comfortable Chase"
+      },
+      "intro": {
+        "introText": "A brisk powerplay set the tone and the chase stayed on rails from start to finish.",
+        "introImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_intro_8.jpg"
+      },
+      "main": {
+        "heading": "Match Report: Top Order Fires in a Comfortable Chase",
+        "excerpt": "A strong opening stand made the required rate irrelevant.",
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><h2>Highlights</h2><ul><li>Quick start in the first 6 overs</li><li>Smart rotation through the middle</li><li>Finished with boundaries</li></ul><p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>",
+        "featuredImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_featured_8.jpg",
+        "isTeamsheets": false,
+        "isMatchReports": true,
+        "isNews": false,
+        "isPlayers": false
+      },
+      "blocks": {
+        "blocks": [
+          {
+            "blockType": "imageGallery",
+            "gallery": [
+              { "image": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_gallery_4_0.jpg" },
+              { "image": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_gallery_4_1.jpg" },
+              { "image": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_gallery_4_2.jpg" }
+            ],
+            "content": ""
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Club News: End-of-Season Awards Night Announced",
+    "slug": "club-news-end-of-season-awards-night-announced",
+    "postTypeKey": "news",
+    "templateKey": "news",
+    "status": "published",
+    "publishDate": "2025-11-10T19:28:57.644481Z",
+    "templateData": {
+      "banner": {
+        "bannerTitle": "Club News: End-of-Season Awards Night Announced"
+      },
+      "intro": {
+        "introText": "Get your votes ready and your best shirt ironed—awards night details are in.",
+        "introImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_intro_9.jpg"
+      },
+      "main": {
+        "heading": "Club News: End-of-Season Awards Night Announced",
+        "excerpt": "A relaxed evening to celebrate performances, progress, and questionable karaoke.",
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><h2>What to expect</h2><ul><li>Trophies and shout-outs</li><li>Food and refreshments</li><li>Photo wall</li></ul><p>Cras mattis consectetur purus sit amet fermentum.</p>",
+        "featuredImage": "https://res.cloudinary.com/ljelfs/image/upload/v1763300000/cricket_featured_9.jpg",
+        "isTeamsheets": false,
+        "isMatchReports": false,
+        "isNews": true,
+        "isPlayers": false
+      },
+      "blocks": {
+        "blocks": [
+          {
+            "blockType": "richText",
+            "gallery": [],
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p><p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>"
+          }
+        ]
+      }
+    }
+  }
+]
