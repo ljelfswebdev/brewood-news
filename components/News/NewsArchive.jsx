@@ -3,6 +3,7 @@
 
 import { useMemo, useState, useEffect } from 'react';
 import Select from 'react-select';
+import SidebarAccordion from './SidebarAccordion';
 import NewsSidebar from './Sidebar';
 import { POST_TYPE_TEMPLATES } from '@/templates/postTypes';
 import Banner from '@/components/Banner';
@@ -132,7 +133,72 @@ export default function NewsArchive({ posts }) {
 
       <section className="py-12">
         <div className="container">
-          <div className="gap-8 flex flex-col-reverse lg:flex-row">
+          <div className="space-y-8 lg:hidden">
+            <div>
+              <SidebarAccordion
+                categories={sidebarCategories}
+                onFilterChange={setFilters}
+                initialFilters={filters}
+                buttonClassName="w-full"
+              />
+            </div>
+
+            {/* MAIN LIST */}
+            <div className="space-y-6">
+              {paged.length === 0 && (
+                <div className="card">
+                  <p className="text-sm text-gray-600">
+                    No news posts found. Try changing the search or filters.
+                  </p>
+                </div>
+              )}
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {paged.map((post) => (
+                  <NewsCard key={post._id} post={post} />
+                ))}
+              </div>
+
+              {/* PAGINATION */}
+              {filtered.length > PAGE_SIZE && (
+                <div className="mt-6 flex flex-col lg:flex-row items-center justify-between gap-4">
+                  <div className="flex items-center gap-2 text-sm">
+                    <button
+                      type="button"
+                      className="button button--secondary"
+                      onClick={() => goToPage(clampedPage - 1)}
+                      disabled={clampedPage <= 1}
+                    >
+                      Prev
+                    </button>
+                    <button
+                      type="button"
+                      className="button button--secondary"
+                      onClick={() => goToPage(clampedPage + 1)}
+                      disabled={clampedPage >= totalPages}
+                    >
+                      Next
+                    </button>
+                    <span className="text-xs text-gray-500 ml-2">
+                      Page {clampedPage} of {totalPages}
+                    </span>
+                  </div>
+
+                  <div className="w-full md:w-56">
+                    <Select
+                      instanceId="news-page-select"
+                      options={pageOptions}
+                      value={pageOptions.find((o) => o.value === clampedPage)}
+                      onChange={(opt) => goToPage(opt?.value || 1)}
+                      isSearchable={false}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="hidden lg:flex gap-8">
             {/* MAIN LIST */}
             <div className="space-y-6 grow">
               {paged.length === 0 && (
@@ -176,7 +242,7 @@ export default function NewsArchive({ posts }) {
 
                   <div className="w-full md:w-56">
                     <Select
-                      instanceId="news-page-select"
+                      instanceId="news-page-select-desktop"
                       options={pageOptions}
                       value={pageOptions.find((o) => o.value === clampedPage)}
                       onChange={(opt) => goToPage(opt?.value || 1)}
