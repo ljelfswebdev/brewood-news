@@ -13,6 +13,8 @@ export default function Banner({ title }) {
             alt="Banner Background"
             width={1920}       
             height={600}
+            sizes="100vw"
+            quality={60}
             className="object-cover object-center h-full w-full"
             priority
           />

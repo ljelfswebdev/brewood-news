@@ -86,6 +86,8 @@ export default function HeroSection({ data }) {
                       className="w-full h-full object-cover"
                       width={1920}
                       height={600}
+                      sizes="100vw"
+                      quality={60}
                       priority={idx === 0}
                     />
                   </div>

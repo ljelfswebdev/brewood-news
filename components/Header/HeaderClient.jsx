@@ -110,6 +110,8 @@ export default function HeaderClient({ items }) {
               alt="Brewood Cricket Club"
               width={logoSize}
               height={logoSize}
+              sizes={isScrolled ? '60px' : '140px'}
+              quality={65}
               priority
             />
           </Link>
