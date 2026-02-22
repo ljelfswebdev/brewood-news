@@ -24,7 +24,7 @@ function CardShell({ icon, title, children }) {
     <div className="rounded-primary border-2 border-primary p-8 flex items-center gap-8">
       <div className="shrink-0">{icon}</div>
       <div className="space-y-1">
-        <div className="h5">{children}</div>
+        <div className="h6 break-all">{children}</div>
       </div>
     </div>
   );

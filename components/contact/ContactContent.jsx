@@ -18,9 +18,9 @@ export default function ContactSection({ form, contact, socials }) {
 
     <section className="py-12 border-t-2 border-solid border-grey">
       <div className="container">
-        <div className="flex flex-col md:flex-row gap-10">
+        <div className="flex flex-col lg:flex-row gap-10">
           {/* LEFT: contact details + socials */}
-          <div className="flex flex-col w-full md:w-1/2 space-y-4">
+          <div className="flex flex-col w-full lg:w-1/2 space-y-4">
             {hasContactDetails && (
               <ContactCards
                 phone={phone}
