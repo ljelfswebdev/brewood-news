@@ -17,13 +17,4 @@ const MenuSchema = new mongoose.Schema({
   items: { type: [MenuItemSchema], default: [] },
 }, { timestamps: true });
 
-const existing = mongoose.models.Menu;
-
-if (
-  existing &&
-  !existing.schema.path('items')?.schema?.path('target')
-) {
-  delete mongoose.models.Menu;
-}
-
 export default mongoose.models.Menu || mongoose.model('Menu', MenuSchema);

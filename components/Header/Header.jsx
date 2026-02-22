@@ -53,10 +53,16 @@ function menuTreeFromItems(items = []) {
 }
 
 export default async function Header() {
-  await dbConnect();
+  let items = [];
 
-  const menu = await Menu.findOne({ key: 'header' }).lean();
-  const items = menuTreeFromItems(menu?.items || []);
+  try {
+    await dbConnect();
+    const menu = await Menu.findOne({ key: 'header' }).lean();
+    items = menuTreeFromItems(menu?.items || []);
+  } catch (error) {
+    // Do not take down the whole site if menu/db loading fails in production.
+    console.error('Header menu load failed:', error?.message || error);
+  }
 
   return <HeaderClient items={items} />;
 }
