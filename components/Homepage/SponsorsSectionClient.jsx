@@ -53,7 +53,7 @@ function PrimarySponsorCard({ sponsor }) {
               rel={isExternal(href) ? 'noopener noreferrer' : undefined}
               className="button button--secondary max-md:w-full"
             >
-              Visit sponsor
+              Visit Site
             </Link>
           ) : null}
         </div>
@@ -103,11 +103,11 @@ function SponsorCard({ sponsor }) {
                 rel={isExternal(href) ? 'noopener noreferrer' : undefined}
                 className="button button--secondary w-full"
               >
-                Visit sponsor
+                Visit Site
               </Link>
             ) : (
               <span className="button button--secondary w-full opacity-50 pointer-events-none">
-                Visit sponsor
+                Visit Site
               </span>
             )}
           </div>
@@ -130,7 +130,7 @@ export default function SponsorsSectionClient({ sponsors = [] }) {
       <div className="container space-y-8">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <div className="h3 text-primary">Our Sponsors</div>
+            <div className="h3 text-primary">Our Supporters</div>
             <p className="text-sm text-gray-600">
               Thanks to the businesses supporting Brewood Cricket Club.
             </p>
@@ -176,6 +176,10 @@ export default function SponsorsSectionClient({ sponsors = [] }) {
 
           </div>
         )}
+
+        <p className="text-sm text-gray-600">
+              If you would like to support the club, then please get in touch. 
+        </p>
       </div>
     </section>
   );
