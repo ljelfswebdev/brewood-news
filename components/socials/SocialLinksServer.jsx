@@ -9,10 +9,13 @@ export default async function SocialLinksServer({
   showLabels = false,
   gap = 'gap-6',
 }) {
-  await dbConnect();
-
-
-  const settings = await Setting.findOne({ key: 'global' }).lean();
+  let settings = null;
+  try {
+    await dbConnect();
+    settings = await Setting.findOne({ key: 'global' }).lean();
+  } catch (error) {
+    console.error('Social links load failed:', error?.message || error);
+  }
 
   const socials = settings?.templateData?.socials || {};
 

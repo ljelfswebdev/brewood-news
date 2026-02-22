@@ -18,14 +18,18 @@ function normalizeMember(post) {
 }
 
 export default async function CommitteePage() {
-  await dbConnect();
-
-  const posts = await Post.find({
-    postTypeKey: 'committee',
-    status: 'published',
-  })
-    .sort({ sortOrder: 1, createdAt: 1 })
-    .lean();
+  let posts = [];
+  try {
+    await dbConnect();
+    posts = await Post.find({
+      postTypeKey: 'committee',
+      status: 'published',
+    })
+      .sort({ sortOrder: 1, createdAt: 1 })
+      .lean();
+  } catch (error) {
+    console.error('Committee page load failed:', error?.message || error);
+  }
 
   const members = (posts || []).map(normalizeMember);
 

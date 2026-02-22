@@ -36,13 +36,17 @@ function getAllNewsCategories() {
 export default async function NewsPostPage({ params }) {
   const { slug } = params;
 
-  await dbConnect();
-
-  const post = await Post.findOne({
-    slug,
-    postTypeKey: 'news',
-    status: 'published',
-  }).lean();
+  let post = null;
+  try {
+    await dbConnect();
+    post = await Post.findOne({
+      slug,
+      postTypeKey: 'news',
+      status: 'published',
+    }).lean();
+  } catch (error) {
+    console.error('News post load failed:', error?.message || error);
+  }
 
   if (!post) return notFound();
 

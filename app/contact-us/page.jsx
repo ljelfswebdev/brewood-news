@@ -14,17 +14,25 @@ const ContactSection = dynamic(
 );
 
 export default async function ContactUsPage() {
-  await dbConnect();
+  let title = 'Contact Us';
+  let form = null;
+  let globalSettings = null;
+  try {
+    await dbConnect();
 
-  // Fetch the CMS page with slug contact-us
-  const page = await Page.findOne({ slug: 'contact-us' }).lean();
-  const title = page?.title || 'Contact Us';
+    // Fetch the CMS page with slug contact-us
+    const page = await Page.findOne({ slug: 'contact-us' }).lean();
+    title = page?.title || 'Contact Us';
 
-  // Fetch the form with key "contact"
-  const form = await Form.findOne({ key: 'contact' }).lean();
+    // Fetch the form with key "contact"
+    form = await Form.findOne({ key: 'contact' }).lean();
 
-  // Fetch global settings (phone/email/etc.)
-  const globalSettings = await Setting.findOne({ key: 'global' }).lean();
+    // Fetch global settings (phone/email/etc.)
+    globalSettings = await Setting.findOne({ key: 'global' }).lean();
+  } catch (error) {
+    console.error('Contact page load failed:', error?.message || error);
+  }
+
   const contact = globalSettings?.templateData?.contact || {};
   const socials = globalSettings?.templateData?.socials || {};
 

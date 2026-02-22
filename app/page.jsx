@@ -13,9 +13,13 @@ const FeaturesSection = dynamic(() => import('@/components/Homepage/FeaturesSect
 import NewsSlider from '@/components/Homepage/NewsSlider';
 
 export default async function HomePage() {
-  await dbConnect();
-
-  const page = await Page.findOne({ templateKey: 'homepage' }).lean();
+  let page = null;
+  try {
+    await dbConnect();
+    page = await Page.findOne({ templateKey: 'homepage' }).lean();
+  } catch (error) {
+    console.error('Home page data load failed:', error?.message || error);
+  }
 
   if (!page) {
     return (
