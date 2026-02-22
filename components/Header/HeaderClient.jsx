@@ -51,7 +51,6 @@ export default function HeaderClient({ items }) {
     '/about',
     '/contact-us',
     '/news',
-    '/commitee',
     '/committee',
   ];
 

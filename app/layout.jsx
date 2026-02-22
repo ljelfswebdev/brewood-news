@@ -1,9 +1,11 @@
 import './globals.css';
-import dynamic from 'next/dynamic';
+import dynamicImport from 'next/dynamic';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer';
 
-const ToasterClient = dynamic(
+export const dynamic = 'force-dynamic';
+
+const ToasterClient = dynamicImport(
   () => import('react-hot-toast').then(m => m.Toaster),
   { ssr: false }
 );

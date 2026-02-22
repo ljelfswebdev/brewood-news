@@ -1,7 +1,7 @@
 // app/admin/posts/page.jsx
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -10,7 +10,7 @@ import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
-export default function AdminPostsList() {
+function AdminPostsListInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const postTypeKey = searchParams.get('type') || '';
@@ -275,5 +275,13 @@ export default function AdminPostsList() {
         </table>
       </div>
     </div>
+  );
+}
+
+export default function AdminPostsList() {
+  return (
+    <Suspense fallback={<div className="card">Loading…</div>}>
+      <AdminPostsListInner />
+    </Suspense>
   );
 }

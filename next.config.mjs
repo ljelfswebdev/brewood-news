@@ -18,6 +18,16 @@ const nextConfig = {
         destination: '/',
         permanent: true, // 308 redirect
       },
+      {
+        source: '/commitee',
+        destination: '/committee',
+        permanent: true,
+      },
+      {
+        source: '/Commitee',
+        destination: '/committee',
+        permanent: true,
+      },
     ];
   },
 };
