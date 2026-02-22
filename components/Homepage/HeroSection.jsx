@@ -88,6 +88,7 @@ export default function HeroSection({ data }) {
                       height={600}
                       sizes="100vw"
                       quality={60}
+                      loading={idx === 0 ? 'eager' : 'lazy'}
                       priority={idx === 0}
                     />
                   </div>

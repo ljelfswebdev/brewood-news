@@ -1,16 +1,7 @@
 // app/news/page.jsx
-import dynamic from 'next/dynamic';
 import { dbConnect } from '@helpers/db';
 import Post from '@/models/Post';
-import Loading from '@/components/Loading';
-
-const NewsArchive = dynamic(
-  () => import('@/components/News/NewsArchive'),
-  {
-    ssr: false,          // client-side for filters & pagination
-    loading: () => <Loading />,
-  }
-);
+import NewsArchive from '@/components/News/NewsArchive';
 
 
 export default async function NewsPage() {
