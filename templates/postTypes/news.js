@@ -20,16 +20,6 @@ export const NEWS_POST_TEMPLATE = [
     ],
   },
 
-  {
-    key: 'main',
-    label: 'Main Content',
-    fields: [
-      { name: 'heading', label: 'Heading', type: 'text' },
-      { name: 'excerpt', label: 'Excerpt', type: 'textarea' },
-      { name: 'body', label: 'Body', type: 'rich' },
-      { name: 'featuredImage', label: 'Featured Image', type: 'image' },
-    ],
-  },
 
   {
     key: 'blocks',
@@ -39,10 +29,27 @@ export const NEWS_POST_TEMPLATE = [
         name: 'blocks',
         label: 'Blocks',
         type: 'repeater',
+        defaultItem: {
+          blockType: 'richText',
+          gallery: [],
+          content: '',
+        },
         of: [
           { name: 'blockType', label: 'Block Type', type: 'select', options: ['imageGallery', 'richText'] },
-          { name: 'gallery', label: 'Gallery Images', type: 'repeater', of: [{ name: 'image', label: 'Image', type: 'image' }] },
-          { name: 'content', label: 'Rich Text Content', type: 'rich' },
+          {
+            name: 'gallery',
+            label: 'Gallery Images',
+            type: 'repeater',
+            showWhen: { field: 'blockType', equals: 'imageGallery' },
+            defaultItem: { image: '' },
+            of: [{ name: 'image', label: 'Image', type: 'image' }],
+          },
+          {
+            name: 'content',
+            label: 'Rich Text Content',
+            type: 'rich',
+            showWhen: { field: 'blockType', equals: 'richText' },
+          },
         ],
       },
     ],

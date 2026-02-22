@@ -3,6 +3,7 @@
 
 import CloudinaryUpload from '@/components/admin/CloudinaryUpload';
 import RichTextEditor from '@/components/admin/RichTextEditor';
+import Select from 'react-select';
 
 import {
   DndContext,
@@ -234,6 +235,34 @@ export default function FieldBuilder({
                 );
               }
 
+              // SELECT
+              if (field.type === 'select') {
+                const options = Array.isArray(field.options) ? field.options : [];
+                return (
+                  <div key={field.name}>
+                    <label className="label">{field.label}</label>
+                    <select
+                      className="input w-full"
+                      value={fVal || ''}
+                      onChange={(e) =>
+                        updateField(section.key, field.name, e.target.value)
+                      }
+                    >
+                      <option value="">Select...</option>
+                      {options.map((opt) => {
+                        const value = typeof opt === 'string' ? opt : opt?.value;
+                        const label = typeof opt === 'string' ? opt : opt?.label || opt?.value;
+                        return (
+                          <option key={value} value={value}>
+                            {label}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                );
+              }
+
               // REPEATER
               if (field.type === 'repeater') {
                 const items = Array.isArray(fVal) ? fVal : [];
@@ -370,6 +399,11 @@ export default function FieldBuilder({
                                         [sub.name]: value,
                                       });
 
+                                    if (sub.showWhen?.field) {
+                                      const dependsOn = item?.[sub.showWhen.field];
+                                      if (dependsOn !== sub.showWhen.equals) return null;
+                                    }
+
                                     if (sub.type === 'text') {
                                       return (
                                         <div key={sub.name}>
@@ -383,6 +417,31 @@ export default function FieldBuilder({
                                       );
                                     }
 
+                                    if (sub.type === 'select') {
+                                      const options = (Array.isArray(sub.options) ? sub.options : []).map((opt) => {
+                                        if (typeof opt === 'string') return { value: opt, label: opt };
+                                        return {
+                                          value: opt?.value,
+                                          label: opt?.label || opt?.value,
+                                        };
+                                      });
+                                      const selectedOption = options.find((opt) => opt.value === subVal) || null;
+                                      return (
+                                        <div key={sub.name}>
+                                          <label className="label">{sub.label}</label>
+                                          <Select
+                                            inputId={`${section.key}-${field.name}-${idx}-${sub.name}`}
+                                            className="w-full"
+                                            classNamePrefix="rs"
+                                            options={options}
+                                            value={selectedOption}
+                                            isSearchable={false}
+                                            onChange={(next) => updateSub(next?.value || '')}
+                                          />
+                                        </div>
+                                      );
+                                    }
+
                                     if (sub.type === 'image') {
                                       return (
                                         <div key={sub.name}>
@@ -391,6 +450,105 @@ export default function FieldBuilder({
                                             value={subVal}
                                             onChange={(url) => updateSub(url)}
                                           />
+                                        </div>
+                                      );
+                                    }
+
+                                    if (sub.type === 'repeater') {
+                                      const subItems = Array.isArray(subVal) ? subVal : [];
+
+                                      const addSubItem = () => {
+                                        const defaultItem = sub.defaultItem || {};
+                                        updateSub([...subItems, defaultItem]);
+                                      };
+
+                                      const updateSubItem = (subIdx, patch) => {
+                                        const next = [...subItems];
+                                        next[subIdx] = { ...(next[subIdx] || {}), ...patch };
+                                        updateSub(next);
+                                      };
+
+                                      const removeSubItem = (subIdx) => {
+                                        const next = [...subItems];
+                                        next.splice(subIdx, 1);
+                                        updateSub(next);
+                                      };
+
+                                      return (
+                                        <div key={sub.name} className="space-y-2 border rounded-lg p-3">
+                                          <div className="flex items-center justify-between">
+                                            <label className="label mb-0">{sub.label}</label>
+                                            <button
+                                              type="button"
+                                              className="button button--secondary text-xs"
+                                              onClick={addSubItem}
+                                            >
+                                              + Add
+                                            </button>
+                                          </div>
+
+                                          <div className="space-y-2">
+                                            {subItems.map((subItem, subIdx) => (
+                                              <div key={subIdx} className="border rounded-lg p-2 space-y-2">
+                                                {(sub.of || []).map((subField) => {
+                                                  const nestedVal = subItem?.[subField.name] ?? '';
+                                                  const updateNested = (value) =>
+                                                    updateSubItem(subIdx, { [subField.name]: value });
+
+                                                  if (subField.type === 'text') {
+                                                    return (
+                                                      <div key={subField.name}>
+                                                        <label className="label">{subField.label}</label>
+                                                        <input
+                                                          className="input w-full"
+                                                          value={nestedVal}
+                                                          onChange={(e) => updateNested(e.target.value)}
+                                                        />
+                                                      </div>
+                                                    );
+                                                  }
+
+                                                  if (subField.type === 'textarea') {
+                                                    return (
+                                                      <div key={subField.name}>
+                                                        <label className="label">{subField.label}</label>
+                                                        <textarea
+                                                          className="input w-full"
+                                                          rows={subField.rows || 3}
+                                                          value={nestedVal}
+                                                          onChange={(e) => updateNested(e.target.value)}
+                                                        />
+                                                      </div>
+                                                    );
+                                                  }
+
+                                                  if (subField.type === 'image') {
+                                                    return (
+                                                      <div key={subField.name}>
+                                                        <label className="label">{subField.label}</label>
+                                                        <CloudinaryUpload
+                                                          value={nestedVal}
+                                                          onChange={(url) => updateNested(url)}
+                                                        />
+                                                      </div>
+                                                    );
+                                                  }
+
+                                                  return null;
+                                                })}
+
+                                                <div className="flex justify-end">
+                                                  <button
+                                                    type="button"
+                                                    className="button button--tertiary text-xs"
+                                                    onClick={() => removeSubItem(subIdx)}
+                                                  >
+                                                    Remove
+                                                  </button>
+                                                </div>
+                                              </div>
+                                            ))}
+                                          </div>
                                         </div>
                                       );
                                     }

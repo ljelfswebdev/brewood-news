@@ -117,7 +117,7 @@ export default async function NewsPostPage({ params }) {
                     src={intro.introImage}
                     alt={title}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                     priority
                   />
                 </div>
@@ -125,7 +125,7 @@ export default async function NewsPostPage({ params }) {
 
               {/* INTRO TEXT */}
               {intro.introText && (
-                <p className="text-lg text-gray-700">
+                <p className="h1">
                   {intro.introText}
                 </p>
               )}

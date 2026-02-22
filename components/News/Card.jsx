@@ -25,7 +25,7 @@ export default function NewsCard({ post }) {
             src={introImage}
             alt={post.title || 'News image'}
             fill
-            className="object-cover"
+            className="object-contain"
           />
         ) : (
           <div className="absolute inset-0 bg-gray-200" />

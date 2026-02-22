@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 import { dbConnect } from '@helpers/db';
 import Post from '@/models/Post';
 import { requireAdmin } from '@helpers/auth';
+import { publishNewsToFacebook } from '@helpers/facebook';
 
 export async function GET(req) {
   const gate = await requireAdmin();
@@ -82,6 +83,18 @@ export async function POST(req) {
     sortOrder: resolvedSortOrder,
     templateData: templateData || {},
   });
+
+  if (postTypeKey === 'news' && status === 'published') {
+    try {
+      await publishNewsToFacebook({
+        title,
+        slug: cleanSlug,
+        templateData: templateData || {},
+      });
+    } catch (error) {
+      console.error('Facebook publish failed:', error);
+    }
+  }
 
   return NextResponse.json(doc);
 }
