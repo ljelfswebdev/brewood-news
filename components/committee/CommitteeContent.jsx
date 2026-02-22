@@ -61,7 +61,7 @@ export default function CommitteeContent({ members = [] }) {
 
                 <button
                   type="button"
-                  className="button button--primary"
+                  className="button button--primary mt-auto"
                   onClick={() => setActiveMember(member)}
                 >
                   Read More About {firstName}
