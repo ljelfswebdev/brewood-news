@@ -42,8 +42,12 @@ export default function NewsCard({ post }) {
         {snippet && <p className="text-sm text-gray-600 flex-1">{snippet}</p>}
 
         <div className="mt-4">
-          <Link href={`/news/${post.slug}`} className="button button--primary w-full">
-            Read more
+          <Link
+            href={`/news/${post.slug}`}
+            className="button button--primary w-full"
+            aria-label={`Read more about ${post.title || 'this news post'}`}
+          >
+            Read Article
           </Link>
         </div>
       </div>

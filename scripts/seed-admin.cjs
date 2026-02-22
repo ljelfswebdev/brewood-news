@@ -20,8 +20,8 @@ const User = mongoose.models.User || mongoose.model('User', UserSchema);
 (async () => {
   try {
     await mongoose.connect(uri, { bufferCommands: false });
-    const email = process.env.ADMIN_SEED_EMAIL || 'lewis@example.com';
-    const plain = process.env.ADMIN_SEED_PASSWORD || '12345';
+    const email = process.env.ADMIN_SEED_EMAIL || 'brewoodccsecretary@gmail.com';
+    const plain = process.env.ADMIN_SEED_PASSWORD || 'brewood1865';
     const hash = await bcrypt.hash(plain, 10);
     await User.findOneAndUpdate(
       { email },
