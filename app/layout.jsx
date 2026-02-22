@@ -2,6 +2,7 @@ import './globals.css';
 import dynamicImport from 'next/dynamic';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer';
+import { Analytics } from "@vercel/analytics/next"
 
 export const dynamic = 'force-dynamic';
 
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
         </main>
         <Footer />
         <ToasterClient position="top-right" />
+         <Analytics />
       </body>
     </html>
   );
