@@ -8,9 +8,10 @@ import ContactCards from './Cards';
 
 
 export default function ContactSection({ form, contact, socials }) {
-  const phone = contact?.phone || '';
-  const email = contact?.email || '';
-  const address = contact?.address || '';
+  const phone = (contact?.phone || '').trim();
+  const email = (contact?.email || '').trim();
+  const address = (contact?.address || '').trim();
+  const hasContactDetails = Boolean(phone || email || address);
 
   return (
     <>
@@ -20,11 +21,13 @@ export default function ContactSection({ form, contact, socials }) {
         <div className="flex flex-col md:flex-row gap-10">
           {/* LEFT: contact details + socials */}
           <div className="flex flex-col w-full md:w-1/2 space-y-4">
-            <ContactCards
-              phone="01902 123456"
-              email="info@brewoodcc.co.uk"
-              address="Brewood Cricket Club<br/>Some Road<br/>Brewood<br/>ST19..."
-            />
+            {hasContactDetails && (
+              <ContactCards
+                phone={phone}
+                email={email}
+                address={address}
+              />
+            )}
 
             {/* socials use existing client component */}
             <SocialLinksClient className="mt-6" size={24} showLabels={false} />

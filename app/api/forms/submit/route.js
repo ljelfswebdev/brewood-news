@@ -13,6 +13,23 @@ function escapeHtml(str = '') {
     .replace(/'/g, '&#39;');
 }
 
+function getClientIp(req) {
+  const fwd = req.headers.get('x-forwarded-for') || '';
+  if (fwd) return fwd.split(',')[0].trim();
+  return (
+    req.headers.get('x-real-ip') ||
+    req.headers.get('cf-connecting-ip') ||
+    'unknown'
+  );
+}
+
+function toSafeString(value) {
+  if (value == null) return '';
+  if (Array.isArray(value)) return value.map((v) => String(v)).join(', ');
+  if (typeof value === 'object') return JSON.stringify(value);
+  return String(value);
+}
+
 export async function POST(req) {
   try {
     await dbConnect();
@@ -21,6 +38,11 @@ export async function POST(req) {
     // Support either { formKey, values } or { formKey, payload }
     const formKey = body.formKey;
     const values = body.values || body.payload || {};
+    const honeypot = String(body.honeypot || '').trim();
+    const startedAt = Number(body.startedAt);
+    const nowMs = Date.now();
+    const ip = getClientIp(req);
+    const userAgent = req.headers.get('user-agent') || '';
 
     if (!formKey) {
       return NextResponse.json(
@@ -37,15 +59,40 @@ export async function POST(req) {
       );
     }
 
-    // Optional: store submission in DB
+    // Spam guard #1: honeypot must stay empty.
+    if (honeypot) {
+      return NextResponse.json({ ok: true });
+    }
+
+    // Spam guard #2: too-fast submissions are likely bots.
+    if (Number.isFinite(startedAt) && nowMs - startedAt < 2500) {
+      return NextResponse.json(
+        { error: 'Please wait a moment and try again.' },
+        { status: 429 }
+      );
+    }
+
+    // Spam guard #3: simple per-IP rate limit (max 5 / 10 minutes / form).
+    const since = new Date(nowMs - 10 * 60 * 1000);
+    const recentCount = await Submission.countDocuments({
+      formKey,
+      createdAt: { $gte: since },
+      'meta.ip': ip,
+    });
+    if (recentCount >= 5) {
+      return NextResponse.json(
+        { error: 'Too many submissions. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
+    // Store submission in DB
     try {
-      if (Submission) {
-        await Submission.create({
-          formKey,
-          values,
-          createdAt: new Date(),
-        });
-      }
+      await Submission.create({
+        formKey,
+        data: values,
+        meta: { ip, userAgent, source: 'public' },
+      });
     } catch (e) {
       console.warn('Failed to save submission', e);
     }
@@ -57,9 +104,9 @@ export async function POST(req) {
           <tr>
             <td style="padding:4px 8px; border:1px solid #ddd;"><strong>${escapeHtml(
               label
-            )}</strong></td>
+            )}</strong></td> 
             <td style="padding:4px 8px; border:1px solid #ddd;">${escapeHtml(
-              val
+              toSafeString(val)
             )}</td>
           </tr>
         `;

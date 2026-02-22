@@ -18,8 +18,12 @@ export async function GET(req) {
 
   // if type is supplied, filter by postTypeKey
   const filter = type ? { postTypeKey: type } : {};
+  const sort =
+    type === 'committee'
+      ? { sortOrder: 1, createdAt: 1 }
+      : { createdAt: -1 };
 
-  const items = await Post.find(filter).sort({ createdAt: -1 }).lean();
+  const items = await Post.find(filter).sort(sort).lean();
 
   return NextResponse.json({ items });
 }
@@ -40,6 +44,7 @@ export async function POST(req) {
     slug,
     status = 'published',
     publishedAt,
+    sortOrder,
     templateData,
   } = body;
 
@@ -57,6 +62,16 @@ export async function POST(req) {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '') || 'post';
 
+  let resolvedSortOrder = Number(sortOrder);
+  if (!Number.isFinite(resolvedSortOrder)) {
+    if (postTypeKey === 'committee') {
+      const last = await Post.findOne({ postTypeKey }).sort({ sortOrder: -1 }).lean();
+      resolvedSortOrder = Number.isFinite(last?.sortOrder) ? Number(last.sortOrder) + 1 : 0;
+    } else {
+      resolvedSortOrder = 0;
+    }
+  }
+
   const doc = await Post.create({
     title,
     slug: cleanSlug,
@@ -64,6 +79,7 @@ export async function POST(req) {
     templateKey: templateKey || postTypeKey,
     status,
     publishedAt: publishedAt ? new Date(publishedAt) : new Date(),
+    sortOrder: resolvedSortOrder,
     templateData: templateData || {},
   });
 

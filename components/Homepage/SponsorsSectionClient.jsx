@@ -72,12 +72,7 @@ function SponsorCard({ sponsor }) {
   const descHtml = main.content || '';
 
   return (
-    <Link
-      href={href}
-      target={isExternal(href) ? '_blank' : undefined}
-      rel={isExternal(href) ? 'noopener noreferrer' : undefined}
-      className="card block overflow-hidden rounded-primary border-2 border-primary hover:shadow-md transition h-full"
-    >
+    <article className="card overflow-hidden rounded-primary border-2 border-primary hover:shadow-md transition h-full">
       <div className="flex flex-col p-6 gap-4 h-full">
         <div className="relative w-full aspect-[4/3] rounded-primary overflow-hidden bg-gray-100">
           {img ? (
@@ -101,13 +96,24 @@ function SponsorCard({ sponsor }) {
           ) : null}
 
           <div className="pt-2 mt-auto">
-            <div className="button button--secondary w-full">
-              Visit sponsor
-            </div>
+            {href && href !== '#' ? (
+              <Link
+                href={href}
+                target={isExternal(href) ? '_blank' : undefined}
+                rel={isExternal(href) ? 'noopener noreferrer' : undefined}
+                className="button button--secondary w-full"
+              >
+                Visit sponsor
+              </Link>
+            ) : (
+              <span className="button button--secondary w-full opacity-50 pointer-events-none">
+                Visit sponsor
+              </span>
+            )}
           </div>
         </div>
       </div>
-    </Link>
+    </article>
   );
 }
 

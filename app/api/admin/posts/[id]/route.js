@@ -33,6 +33,9 @@ export async function PATCH(req, { params }) {
   if (body.templateKey != null) update.templateKey = String(body.templateKey);
   if (body.status != null) update.status = String(body.status);
   if (body.publishedAt != null) update.publishedAt = new Date(body.publishedAt);
+  if (body.sortOrder != null && Number.isFinite(Number(body.sortOrder))) {
+    update.sortOrder = Number(body.sortOrder);
+  }
   if (body.templateData != null) update.templateData = body.templateData;
 
   const doc = await Post.findByIdAndUpdate(params.id, update, { new: true }).lean();

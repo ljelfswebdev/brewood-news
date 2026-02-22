@@ -9,6 +9,17 @@ export async function GET() {
   if (!gate.ok) return NextResponse.json({ error: gate.error }, { status: gate.status });
 
   await dbConnect();
+  await PostType.updateOne(
+    { key: 'committee' },
+    {
+      $setOnInsert: {
+        key: 'committee',
+        label: 'Committee',
+        templateKey: 'committee',
+      },
+    },
+    { upsert: true }
+  );
   const items = await PostType.find().sort({ createdAt: 1 }).lean();
   return NextResponse.json({ items });
 }

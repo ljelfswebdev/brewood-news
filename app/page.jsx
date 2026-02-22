@@ -38,8 +38,8 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection data={section1} />
-      <SponsorsSection />
       <FeaturesSection data={section3} />
+      <SponsorsSection />
       <BlueBanner data={section2} />
       <NewsSlider />
     </>
