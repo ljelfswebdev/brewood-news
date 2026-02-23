@@ -87,7 +87,7 @@ export default function HeroSection({ data }) {
                       width={1920}
                       height={600}
                       sizes="100vw"
-                      quality={60}
+                      quality={50}
                       loading={idx === 0 ? 'eager' : 'lazy'}
                       priority={idx === 0}
                     />

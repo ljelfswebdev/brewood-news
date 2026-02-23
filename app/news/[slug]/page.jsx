@@ -10,9 +10,6 @@ import SidebarAccordion from '@/components/News/SidebarAccordion';
 import NewsSidebar from '@/components/News/Sidebar';
 import NewsBlocks from '@/components/News/NewsBlocks';
 
-/* ------------------------------------
-   Helper: get ALL news categories
------------------------------------- */
 function getAllNewsCategories() {
   const tpl = POST_TYPE_TEMPLATES?.news?.template || [];
 
@@ -66,18 +63,10 @@ export default async function NewsPostPage({ params }) {
       })
     : null;
 
-  /* ------------------------------------
-     Categories ON THIS POST (for pills)
-  ------------------------------------ */
   const activeCategories = Object.entries(taxonomy)
     .filter(([, val]) => val === true)
-    .map(([key]) =>
-      key.replace(/^is/, '').replace(/([A-Z])/g, ' $1').trim()
-    );
+    .map(([key]) => key.replace(/^is/, '').replace(/([A-Z])/g, ' $1').trim());
 
-  /* ------------------------------------
-     ALL categories (for sidebar)
-  ------------------------------------ */
   const allCategories = getAllNewsCategories();
 
   return (
@@ -86,10 +75,8 @@ export default async function NewsPostPage({ params }) {
 
       <section className="py-12">
         <div className="container">
-          <div className="hidden lg:flex gap-8">
-            {/* MAIN CONTENT */}
+          <div className="gap-8 flex flex-col lg:flex-row">
             <div className="grow max-w-4xl space-y-8">
-              {/* TITLE */}
               <div className="space-y-2">
                 <h1 className="h2">{title}</h1>
                 {formattedDate && (
@@ -97,7 +84,6 @@ export default async function NewsPostPage({ params }) {
                 )}
               </div>
 
-              {/* ACTIVE CATEGORIES */}
               {activeCategories.length > 0 && (
                 <div className="flex flex-wrap gap-2">
                   {activeCategories.map((cat) => (
@@ -111,7 +97,6 @@ export default async function NewsPostPage({ params }) {
                 </div>
               )}
 
-              {/* INTRO IMAGE */}
               {intro.introImage && (
                 <div className="relative w-full aspect-[16/9] overflow-hidden rounded-primary">
                   <Image
@@ -119,19 +104,19 @@ export default async function NewsPostPage({ params }) {
                     alt={title}
                     fill
                     className="object-contain"
+                    sizes="(max-width: 1024px) 100vw, 896px"
+                    quality={58}
                     priority
                   />
                 </div>
               )}
 
-              {/* INTRO TEXT */}
               {intro.introText && (
                 <p className="h1">
                   {intro.introText}
                 </p>
               )}
 
-              {/* MAIN BODY */}
               {main.body && (
                 <div
                   className="prose max-w-none"
@@ -139,82 +124,21 @@ export default async function NewsPostPage({ params }) {
                 />
               )}
 
-              {/* FLEXIBLE BLOCKS */}
               {blocks.length > 0 && <NewsBlocks blocks={blocks} />}
+
+              <div className="lg:hidden">
+                <SidebarAccordion
+                  categories={allCategories}
+                  mode="navigate"
+                  buttonClassName="w-full"
+                />
+              </div>
             </div>
 
-            {/* DESKTOP SIDEBAR */}
-            <div className="lg:min-w-[400px]">
+            <div className="hidden lg:block lg:min-w-[400px]">
               <NewsSidebar
                 categories={allCategories}
                 mode="navigate"
-              />
-            </div>
-          </div>
-
-          <div className="space-y-10 lg:hidden">
-            {/* MAIN CONTENT */}
-            <div className="max-w-4xl space-y-8">
-              {/* TITLE */}
-              <div className="space-y-2">
-                <h1 className="h2">{title}</h1>
-                {formattedDate && (
-                  <p className="text-sm text-gray-500">{formattedDate}</p>
-                )}
-              </div>
-
-              {/* ACTIVE CATEGORIES */}
-              {activeCategories.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {activeCategories.map((cat) => (
-                    <span
-                      key={cat}
-                      className="button button--secondary text-xs"
-                    >
-                      {cat}
-                    </span>
-                  ))}
-                </div>
-              )}
-
-              {/* INTRO IMAGE */}
-              {intro.introImage && (
-                <div className="relative w-full aspect-[16/9] overflow-hidden rounded-primary">
-                  <Image
-                    src={intro.introImage}
-                    alt={title}
-                    fill
-                    className="object-contain"
-                    priority
-                  />
-                </div>
-              )}
-
-              {/* INTRO TEXT */}
-              {intro.introText && (
-                <p className="h1">
-                  {intro.introText}
-                </p>
-              )}
-
-              {/* MAIN BODY */}
-              {main.body && (
-                <div
-                  className="prose max-w-none"
-                  dangerouslySetInnerHTML={{ __html: main.body }}
-                />
-              )}
-
-              {/* FLEXIBLE BLOCKS */}
-              {blocks.length > 0 && <NewsBlocks blocks={blocks} />}
-            </div>
-
-            {/* SIDEBAR BELOW CONTENT (ALL categories, navigate mode) */}
-            <div>
-              <SidebarAccordion
-                categories={allCategories}
-                mode="navigate"
-                buttonClassName="w-full"
               />
             </div>
           </div>

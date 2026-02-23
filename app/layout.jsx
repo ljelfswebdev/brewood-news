@@ -1,15 +1,11 @@
 import './globals.css';
-import dynamicImport from 'next/dynamic';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer';
-import { Analytics } from "@vercel/analytics/next"
+import ToastProvider from '@/components/ToastProvider';
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const dynamic = 'force-dynamic';
-
-const ToasterClient = dynamicImport(
-  () => import('react-hot-toast').then(m => m.Toaster),
-  { ssr: false }
-);
 
 export const metadata = {
   title: 'Brewood Cricket Club',
@@ -25,8 +21,9 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
-        <ToasterClient position="top-right" />
-         <Analytics />
+        <ToastProvider />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

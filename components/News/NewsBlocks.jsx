@@ -34,6 +34,8 @@ export default function NewsBlocks({ blocks }) {
                   alt=""
                   fill
                   className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 896px"
+                  quality={58}
                 />
               </div>
             );
@@ -55,6 +57,8 @@ export default function NewsBlocks({ blocks }) {
                       alt=""
                       fill
                       className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 896px"
+                      quality={58}
                     />
                   </div>
                 </SwiperSlide>

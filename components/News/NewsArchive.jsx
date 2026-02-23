@@ -1,4 +1,3 @@
-// components/News/NewsArchive.jsx
 'use client';
 
 import { useMemo, useState, useEffect } from 'react';
@@ -48,7 +47,7 @@ const FALLBACK_LABEL_TO_FIELD = {
 };
 
 export default function NewsArchive({ posts }) {
-   const searchParams = useSearchParams();
+  const searchParams = useSearchParams();
   const [filters, setFilters] = useState({ search: '', categories: [] });
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -56,7 +55,7 @@ export default function NewsArchive({ posts }) {
     setCurrentPage(1);
   }, [filters]);
 
-    useEffect(() => {
+  useEffect(() => {
     const search = searchParams.get('search') || '';
     const categoriesParam = searchParams.get('categories');
 
@@ -133,18 +132,17 @@ export default function NewsArchive({ posts }) {
 
       <section className="py-12">
         <div className="container">
-          <div className="space-y-8 lg:hidden">
-            <div>
-              <SidebarAccordion
-                categories={sidebarCategories}
-                onFilterChange={setFilters}
-                initialFilters={filters}
-                buttonClassName="w-full"
-              />
-            </div>
+          <div className="mb-8 lg:hidden">
+            <SidebarAccordion
+              categories={sidebarCategories}
+              onFilterChange={setFilters}
+              initialFilters={filters}
+              buttonClassName="w-full"
+            />
+          </div>
 
-            {/* MAIN LIST */}
-            <div className="space-y-6">
+          <div className="gap-8 flex flex-col lg:flex-row">
+            <div className="space-y-6 grow">
               {paged.length === 0 && (
                 <div className="card">
                   <p className="text-sm text-gray-600">
@@ -159,7 +157,6 @@ export default function NewsArchive({ posts }) {
                 ))}
               </div>
 
-              {/* PAGINATION */}
               {filtered.length > PAGE_SIZE && (
                 <div className="mt-6 flex flex-col lg:flex-row items-center justify-between gap-4">
                   <div className="flex items-center gap-2 text-sm">
@@ -196,65 +193,8 @@ export default function NewsArchive({ posts }) {
                 </div>
               )}
             </div>
-          </div>
 
-          <div className="hidden lg:flex gap-8">
-            {/* MAIN LIST */}
-            <div className="space-y-6 grow">
-              {paged.length === 0 && (
-                <div className="card">
-                  <p className="text-sm text-gray-600">
-                    No news posts found. Try changing the search or filters.
-                  </p>
-                </div>
-              )}
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {paged.map((post) => (
-                  <NewsCard key={post._id} post={post} />
-                ))}
-              </div>
-
-              {/* PAGINATION */}
-              {filtered.length > PAGE_SIZE && (
-                <div className="mt-6 flex flex-col lg:flex-row items-center justify-between gap-4">
-                  <div className="flex items-center gap-2 text-sm">
-                    <button
-                      type="button"
-                      className="button button--secondary"
-                      onClick={() => goToPage(clampedPage - 1)}
-                      disabled={clampedPage <= 1}
-                    >
-                      Prev
-                    </button>
-                    <button
-                      type="button"
-                      className="button button--secondary"
-                      onClick={() => goToPage(clampedPage + 1)}
-                      disabled={clampedPage >= totalPages}
-                    >
-                      Next
-                    </button>
-                    <span className="text-xs text-gray-500 ml-2">
-                      Page {clampedPage} of {totalPages}
-                    </span>
-                  </div>
-
-                  <div className="w-full md:w-56">
-                    <Select
-                      instanceId="news-page-select-desktop"
-                      options={pageOptions}
-                      value={pageOptions.find((o) => o.value === clampedPage)}
-                      onChange={(opt) => goToPage(opt?.value || 1)}
-                      isSearchable={false}
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* SIDEBAR */}
-            <div className="lg:min-w-[400px]">
+            <div className="hidden lg:block lg:min-w-[400px]">
               <NewsSidebar
                 categories={sidebarCategories}
                 onFilterChange={setFilters}

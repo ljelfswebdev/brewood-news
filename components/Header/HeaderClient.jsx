@@ -111,7 +111,7 @@ export default function HeaderClient({ items }) {
               width={logoSize}
               height={logoSize}
               sizes={isScrolled ? '60px' : '140px'}
-              quality={65}
+              quality={45}
               priority
             />
           </Link>

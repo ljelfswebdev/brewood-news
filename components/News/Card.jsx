@@ -26,6 +26,8 @@ export default function NewsCard({ post }) {
             alt={post.title || 'News image'}
             fill
             className="object-contain"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
+            quality={58}
           />
         ) : (
           <div className="absolute inset-0 bg-gray-200" />

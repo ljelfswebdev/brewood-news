@@ -7,7 +7,7 @@ export default function ImageWithFallback(props) {
   const {
     src,
     alt,
-    quality = 70,
+    quality = 60,
     sizes,
     fill,
     ...rest
