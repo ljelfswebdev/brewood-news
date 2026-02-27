@@ -31,20 +31,82 @@ function getAllNewsCategories() {
     .filter(Boolean);
 }
 
-export default async function NewsPostPage({ params }) {
-  const { slug } = params;
+function normalizeSiteUrl(raw) {
+  const site = String(raw || '').trim();
+  if (!site) return 'https://brewood-news.vercel.app';
+  return site.replace(/\/+$/, '');
+}
 
-  let post = null;
+function stripHtml(value) {
+  return String(value || '')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+async function getNewsPostBySlug(slug) {
   try {
     await dbConnect();
-    post = await Post.findOne({
+    return await Post.findOne({
       slug,
       postTypeKey: 'news',
       status: 'published',
     }).lean();
   } catch (error) {
     console.error('News post load failed:', error?.message || error);
+    return null;
   }
+}
+
+export async function generateMetadata({ params }) {
+  const post = await getNewsPostBySlug(params.slug);
+  if (!post) {
+    return {
+      title: 'News',
+    };
+  }
+
+  const siteUrl = normalizeSiteUrl(
+    process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL
+  );
+  const postUrl = `${siteUrl}/news/${post.slug}`;
+
+  const intro = post?.templateData?.intro || {};
+  const main = post?.templateData?.main || {};
+
+  const image = String(intro?.introImage || main?.featuredImage || '').trim();
+  const description =
+    stripHtml(intro?.introText) ||
+    stripHtml(main?.excerpt) ||
+    stripHtml(main?.body).slice(0, 160) ||
+    'Brewood Cricket Club news update.';
+
+  return {
+    title: post.title,
+    description,
+    alternates: {
+      canonical: postUrl,
+    },
+    openGraph: {
+      title: post.title,
+      description,
+      url: postUrl,
+      type: 'article',
+      images: image ? [{ url: image, width: 1200, height: 630, alt: post.title }] : [],
+    },
+    twitter: {
+      card: image ? 'summary_large_image' : 'summary',
+      title: post.title,
+      description,
+      images: image ? [image] : [],
+    },
+  };
+}
+
+export default async function NewsPostPage({ params }) {
+  const { slug } = params;
+
+  const post = await getNewsPostBySlug(slug);
 
   if (!post) return notFound();
 

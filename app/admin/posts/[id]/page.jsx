@@ -82,6 +82,25 @@ export default function EditPost() {
     setActiveSection((old) => old || tpl[0]?.key || '');
   }, [templateKey]);
 
+  function getShareHref() {
+    const cleanSlug =
+      String(slug || '')
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '') || '';
+
+    if (!cleanSlug || !String(title || '').trim()) return '';
+
+    const envSite = String(process.env.NEXT_PUBLIC_SITE_URL || '').trim().replace(/\/+$/, '');
+    const origin =
+      envSite || (typeof window !== 'undefined' ? window.location.origin : '');
+    if (!origin) return '';
+
+    const postUrl = `${origin}/news/${cleanSlug}`;
+    return `https://wa.me/?text=${encodeURIComponent(`${title}\n${postUrl}`)}`;
+  }
+
   async function save() {
     if (!title.trim()) {
       toast.error('Title is required');
@@ -131,6 +150,8 @@ export default function EditPost() {
 
   const typeDef = POST_TYPE_TEMPLATES[templateKey || postTypeKey];
   const template = typeDef?.template || [];
+  const whatsappHref =
+    postTypeKey === 'news' && status === 'published' ? getShareHref() : '';
 
   return (
     <div className="space-y-4">
@@ -146,12 +167,24 @@ export default function EditPost() {
           <h1 className="text-lg font-semibold">
             Edit {typeDef?.label || postTypeKey || 'Post'}
           </h1>
-          <button
-            className="button button--tertiary text-xs"
-            onClick={del}
-          >
-            Delete
-          </button>
+          <div className="flex items-center gap-2">
+            {whatsappHref && (
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button button--secondary"
+              >
+                Share On WhatsApp
+              </a>
+            )}
+            <button
+              className="button button--tertiary text-xs"
+              onClick={del}
+            >
+              Delete
+            </button>
+          </div>
         </div>
 
         {/* META */}

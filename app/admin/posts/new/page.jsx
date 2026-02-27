@@ -55,16 +55,36 @@ export default function NewPost() {
     );
   }
 
-  function autoSlug(val) {
-    setTitle(val);
-    if (!slug) {
-      const s = val
+  function slugify(val) {
+    return String(val || '')
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  function maybeAutoSlugFromTitle() {
+    if (String(slug || '').trim()) return;
+    setSlug(slugify(title));
+  }
+
+  function getShareHref() {
+    const cleanSlug =
+      (slug || title)
         .toLowerCase()
         .trim()
         .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '');
-      setSlug(s);
-    }
+        .replace(/^-+|-+$/g, '') || '';
+
+    if (!cleanSlug || !String(title || '').trim()) return '';
+
+    const envSite = String(process.env.NEXT_PUBLIC_SITE_URL || '').trim().replace(/\/+$/, '');
+    const origin =
+      envSite || (typeof window !== 'undefined' ? window.location.origin : '');
+    if (!origin) return '';
+
+    const postUrl = `${origin}/news/${cleanSlug}`;
+    return `https://wa.me/?text=${encodeURIComponent(`${title}\n${postUrl}`)}`;
   }
 
   async function save() {
@@ -101,6 +121,9 @@ export default function NewPost() {
     }
   }
 
+  const whatsappHref =
+    postTypeKey === 'news' && status === 'published' ? getShareHref() : '';
+
   return (
     <div className="space-y-4">
       <a
@@ -115,13 +138,25 @@ export default function NewPost() {
           <h1 className="text-lg font-semibold">
             New {typeDef.label || postTypeKey} Post
           </h1>
-          <button
-            className="button button--primary"
-            onClick={save}
-            disabled={saving}
-          >
-            {saving ? 'Saving…' : 'Save post'}
-          </button>
+          <div className="flex items-center gap-2">
+            {whatsappHref && (
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button button--secondary"
+              >
+                Share On WhatsApp
+              </a>
+            )}
+            <button
+              className="button button--primary"
+              onClick={save}
+              disabled={saving}
+            >
+              {saving ? 'Saving…' : 'Save post'}
+            </button>
+          </div>
         </div>
 
         {/* META FIELDS */}
@@ -131,7 +166,8 @@ export default function NewPost() {
             <input
               className="input w-full"
               value={title}
-              onChange={(e) => autoSlug(e.target.value)}
+              onChange={(e) => setTitle(e.target.value)}
+              onBlur={maybeAutoSlugFromTitle}
             />
           </div>
           <div>
