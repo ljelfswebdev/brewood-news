@@ -84,7 +84,15 @@ export default function NewPost() {
     if (!origin) return '';
 
     const postUrl = `${origin}/news/${cleanSlug}`;
-    return `https://wa.me/?text=${encodeURIComponent(`${title}\n${postUrl}`)}`;
+    const introText = String(
+      templateData?.intro?.introText || templateData?.main?.excerpt || ''
+    ).trim();
+    const introIsDuplicateTitle =
+      introText.toLowerCase() === String(title || '').trim().toLowerCase();
+    const message = introText && !introIsDuplicateTitle
+      ? `${title}\n${introText}\n\nRead more at: ${postUrl}`
+      : `${title}\n\nRead more at: ${postUrl}`;
+    return `https://wa.me/?text=${encodeURIComponent(message)}`;
   }
 
   async function save() {
