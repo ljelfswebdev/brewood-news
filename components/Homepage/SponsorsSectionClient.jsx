@@ -131,7 +131,7 @@ export default function SponsorsSectionClient({ sponsors = [] }) {
         <div className="flex items-end justify-between gap-4">
           <div>
             <div className="h3 text-primary">Our Supporters</div>
-            <p className="text-sm text-gray-600">
+            <p className="">
               Thanks to the businesses supporting Brewood Cricket Club.
             </p>
           </div>
@@ -177,7 +177,7 @@ export default function SponsorsSectionClient({ sponsors = [] }) {
           </div>
         )}
 
-        <p className="text-sm text-gray-600">
+        <p className="">
               If you would like to support the club, then please get in touch. 
         </p>
       </div>

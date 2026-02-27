@@ -73,7 +73,7 @@ export default function HeaderClient({ items }) {
   const logoSize = isScrolled ? 60 : 140;
 
   const logoClass = [
-    'absolute top-2 left-0 transition-all duration-200',
+    'absolute top-2 left-4 lg:left-0 transition-all duration-200',
     isScrolled ? '!top-1/2 -translate-y-1/2' : 'top-0 translate-y-0',
   ].join(' ');
 
@@ -98,7 +98,7 @@ export default function HeaderClient({ items }) {
     <>
       {/* HEADER */}
       <div className={headerClass}>
-        <div className="container flex items-center justify-end py-6 md:py-8 gap-4 relative">
+        <div className="container flex items-center justify-end py-6 lg:py-8 gap-4 relative">
           {/* LOGO */}
           <Link
             href="/"
@@ -117,7 +117,7 @@ export default function HeaderClient({ items }) {
           </Link>
 
           {/* DESKTOP NAV */}
-          <nav className="hidden md:flex items-center gap-6 text-sm">
+          <nav className="hidden lg:flex items-center gap-6 text-sm">
             {topLevel.map((item, i) => (
               <div key={itemKey(item, `desktop-${i}`)} className="relative group">
                 {item.url ? (
@@ -167,7 +167,7 @@ export default function HeaderClient({ items }) {
           <button
             type="button"
             onClick={toggle}
-            className="z-50 md:hidden inline-flex flex-col justify-center items-center w-9 h-9"
+            className="z-50 lg:hidden inline-flex flex-col justify-center items-center w-9 h-9"
             aria-label="Toggle navigation"
           >
             <span
@@ -197,7 +197,7 @@ export default function HeaderClient({ items }) {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-x-0 top-0 bottom-0 pt-14 bg-secondary text-white md:hidden z-40" // ✅ below header now
+            className="fixed inset-x-0 top-0 bottom-0 pt-14 bg-secondary text-white lg:hidden z-40" // ✅ below header now
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
