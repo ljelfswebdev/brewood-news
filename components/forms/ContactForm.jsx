@@ -3,19 +3,22 @@
 
 import { useState } from 'react';
 import Select from 'react-select';
+import CheckedBoxIcon from '@/components/ui/CheckedBoxIcon';
+
+function buildInitialValues(form) {
+  const v = {};
+  (form.rows || []).forEach((row) => {
+    (row.fields || []).forEach((field) => {
+      if (!field?.label) return;
+      v[field.label] = field.type === 'checkbox' ? false : '';
+    });
+  });
+  return v;
+}
 
 export default function ContactForm({ form }) {
   // Build initial state based on the form rows/fields
-  const [values, setValues] = useState(() => {
-    const v = {};
-    (form.rows || []).forEach((row) => {
-      (row.fields || []).forEach((field) => {
-        // Use label as the key
-        v[field.label] = '';
-      });
-    });
-    return v;
-  });
+  const [values, setValues] = useState(() => buildInitialValues(form));
   const [formStartedAt, setFormStartedAt] = useState(() => Date.now());
   const [honeypot, setHoneypot] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -77,13 +80,7 @@ export default function ContactForm({ form }) {
       }
 
       // Reset form if you want
-      setValues((prev) => {
-        const cleared = {};
-        Object.keys(prev).forEach((k) => {
-          cleared[k] = '';
-        });
-        return cleared;
-      });
+      setValues(buildInitialValues(form));
       setHoneypot('');
       setFormStartedAt(Date.now());
       setShowSuccessModal(true);
@@ -154,6 +151,30 @@ export default function ContactForm({ form }) {
                       // react-select doesn't support native `required`, we validate manually above
                       classNamePrefix="react-select"
                     />
+                  </div>
+                );
+              }
+
+              // Checkbox
+              if (type === 'checkbox') {
+                return (
+                  <div key={j} className="pt-2">
+                    <label className="flex items-start gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        className="peer sr-only"
+                        checked={!!val}
+                        onChange={(e) => updateField(label, e.target.checked)}
+                        required={required}
+                      />
+                      <span className="mt-0.5 h-5 w-5 flex shrink-0 border border-primary relative items-center justify-center [&>svg]:opacity-0 peer-checked:[&>svg]:opacity-100">
+                        <CheckedBoxIcon className="h-full w-full transition-opacity" />
+                      </span>
+                      <span className="text-sm text-gray-700">
+                        {label}
+                        {required && <span className="text-red-500 ml-1">*</span>}
+                      </span>
+                    </label>
                   </div>
                 );
               }

@@ -70,6 +70,7 @@ const typeOptions = [
   { value: 'text', label: 'Text' },
   { value: 'textarea', label: 'Textarea' },
   { value: 'select', label: 'Select' },
+  { value: 'checkbox', label: 'Checkbox' },
 ];
 
 function FieldEditor({ field, onChange }) {
