@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Image from '@/helpers/Image';
+import Reveal from '@/components/animations/Reveal';
+import TypewriterText from '@/components/animations/TypewriterText';
 
 function getDisplayName(member) {
   const first = String(member?.firstName || '').trim();
@@ -34,39 +36,50 @@ export default function CommitteeContent({ members = [], emptyText = 'No committ
     <>
       {members.length ? (
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {members.map((member) => {
+          {members.map((member, index) => {
             const displayName = getDisplayName(member);
             const firstName = getFirstName(member);
 
             return (
-              <article
+              <Reveal
+                as="article"
                 key={member._id}
                 className="text-center flex flex-col items-center gap-4"
+                delay={index * 100}
               >
-                <div className="relative h-48 w-48 overflow-hidden rounded-full border-4 border-primary">
+                <Reveal className="relative h-48 w-48 overflow-hidden rounded-full border-4 border-primary" variant="fade-in" delay={80 + index * 100}>
                   <Image
                     src={member.image}
                     alt={displayName}
                     fill
                     className="object-cover"
                   />
-                </div>
+                </Reveal>
 
-                <h2 className="h4">{displayName}</h2>
+                <TypewriterText
+                  as="h2"
+                  text={displayName}
+                  className="h4"
+                  delay={120 + index * 100}
+                />
                 {!!String(member.position || '').trim() && (
-                  <p className="text text-gray-600 -mt-2">
-                    {member.position}
-                  </p>
+                  <Reveal delay={160 + index * 100}>
+                    <p className="text text-gray-600 -mt-2">
+                      {member.position}
+                    </p>
+                  </Reveal>
                 )}
 
-                <button
-                  type="button"
-                  className="button button--primary mt-auto"
-                  onClick={() => setActiveMember(member)}
-                >
-                  Read More About {firstName}
-                </button>
-              </article>
+                <Reveal delay={220 + index * 100}>
+                  <button
+                    type="button"
+                    className="button button--primary mt-auto"
+                    onClick={() => setActiveMember(member)}
+                  >
+                    Read More About {firstName}
+                  </button>
+                </Reveal>
+              </Reveal>
             );
           })}
         </div>

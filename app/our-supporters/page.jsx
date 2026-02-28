@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import Banner from '@/components/Banner';
+import Reveal from '@/components/animations/Reveal';
+import TypewriterText from '@/components/animations/TypewriterText';
 import Image from '@/helpers/Image';
 import { dbConnect } from '@helpers/db';
 import Page from '@/models/Page';
@@ -29,18 +31,20 @@ function SponsorCard({ sponsor }) {
         ) : null}
       </div>
 
-      <div className="flex flex-1 flex-col gap-3">
-        <h2 className="h4">{title}</h2>
+        <div className="flex flex-1 flex-col gap-3">
+        <TypewriterText as="h2" text={title} className="h4" />
 
         {content ? (
-          <div
-            className="prose prose-sm max-w-none text-gray-600"
-            dangerouslySetInnerHTML={{ __html: content }}
-          />
+          <Reveal delay={100}>
+            <div
+              className="prose prose-sm max-w-none text-gray-600"
+              dangerouslySetInnerHTML={{ __html: content }}
+            />
+          </Reveal>
         ) : null}
 
         {link ? (
-          <div className="mt-auto pt-2">
+          <Reveal className="mt-auto pt-2" delay={160}>
             <Link
               href={link}
               target="_blank"
@@ -49,7 +53,7 @@ function SponsorCard({ sponsor }) {
             >
               Visit Site
             </Link>
-          </div>
+          </Reveal>
         ) : null}
       </div>
     </article>
@@ -83,19 +87,20 @@ export default async function OurSupportersPage() {
       <section className="py-12">
         <div className="container space-y-8">
           {topContent ? (
-            <div
-              className="prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: topContent }}
-            />
+            <Reveal>
+              <div
+                className="prose max-w-none"
+                dangerouslySetInnerHTML={{ __html: topContent }}
+              />
+            </Reveal>
           ) : null}
 
           {safeSponsors.length ? (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {safeSponsors.map((sponsor) => (
-                <SponsorCard
-                  key={String(sponsor?._id)}
-                  sponsor={sponsor}
-                />
+              {safeSponsors.map((sponsor, index) => (
+                <Reveal key={String(sponsor?._id)} delay={index * 90}>
+                  <SponsorCard sponsor={sponsor} />
+                </Reveal>
               ))}
             </div>
           ) : (
@@ -105,10 +110,12 @@ export default async function OurSupportersPage() {
           )}
 
           {bottomContent ? (
-            <div
-              className="prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: bottomContent }}
-            />
+            <Reveal delay={160}>
+              <div
+                className="prose max-w-none"
+                dangerouslySetInnerHTML={{ __html: bottomContent }}
+              />
+            </Reveal>
           ) : null}
         </div>
       </section>

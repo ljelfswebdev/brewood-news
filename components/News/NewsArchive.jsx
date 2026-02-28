@@ -152,8 +152,8 @@ export default function NewsArchive({ posts }) {
               )}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {paged.map((post) => (
-                  <NewsCard key={post._id} post={post} />
+                {paged.map((post, index) => (
+                  <NewsCard key={post._id} post={post} delay={index * 90} />
                 ))}
               </div>
 

@@ -5,6 +5,8 @@ import Link from 'next/link';
 import Image from '@/helpers/Image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
+import Reveal from '@/components/animations/Reveal';
+import TypewriterText from '@/components/animations/TypewriterText';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -130,18 +132,30 @@ export default function SponsorsSectionClient({ sponsors = [] }) {
       <div className="container space-y-8">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <div className="h3 text-primary">Our Supporters</div>
-            <p className="">
+            <TypewriterText
+              as="div"
+              text="Our Supporters"
+              className="h3 text-primary"
+            />
+            <Reveal delay={100}>
+              <p className="">
               Thanks to the businesses supporting Brewood Cricket Club.
-            </p>
+              </p>
+            </Reveal>
+            <Reveal delay={160}>
               <p className="">
               If you would like to support the club, then please get in touch. 
-            </p>
+              </p>
+            </Reveal>
           </div>
         </div>
 
         {/* ✅ PRIMARY (full width, full content) */}
-        {primary && <PrimarySponsorCard sponsor={primary} />}
+        {primary && (
+          <Reveal delay={140}>
+            <PrimarySponsorCard sponsor={primary} />
+          </Reveal>
+        )}
 
         {/* ✅ OTHERS (swiper) */}
         {others.length > 0 && (
@@ -180,11 +194,11 @@ export default function SponsorsSectionClient({ sponsors = [] }) {
           </div>
         )}
 
-        <div className="flex justify-center">
+        <Reveal className="flex justify-center" delay={220}>
           <Link href="/our-supporters" className="button button--primary">
             View All Supporters
           </Link>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

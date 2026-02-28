@@ -1,6 +1,9 @@
 // components/Homepage/FeaturesSection.jsx
 'use client';
 
+import Reveal from '@/components/animations/Reveal';
+import TypewriterText from '@/components/animations/TypewriterText';
+
 export default function FeaturesSection({ data }) {
   if (!data) return null;
 
@@ -18,34 +21,33 @@ export default function FeaturesSection({ data }) {
       <div className="container">
         <div className="space-y-4 flex flex-col items-center justify-center">
           {subtitle && (
-            <p className="h3 text-xs uppercase tracking-[0.2em] text-secondary text-center">
-              {subtitle}
-            </p>
-          )}
-
-
-
-          {text && (
-            <div
-              className="prose max-w-none text-center"
-              dangerouslySetInnerHTML={{ __html: text }}
+            <TypewriterText
+              as="p"
+              text={subtitle}
+              className="h3 text-xs uppercase tracking-[0.2em] text-secondary text-center"
             />
           )}
 
+          {text && (
+            <Reveal delay={120}>
+              <div
+                className="prose max-w-none text-center"
+                dangerouslySetInnerHTML={{ __html: text }}
+              />
+            </Reveal>
+          )}
 
           {(linkText || linkUrl) && (
-            <div className="mt-4">
+            <Reveal className="mt-4" delay={220}>
               <a
                 href={linkUrl || '#'}
                 className="button button--primary"
               >
                 {linkText || 'Read more'}
               </a>
-            </div>
+            </Reveal>
           )}
         </div>
-
-
       </div>
     </section>
   );
