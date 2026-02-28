@@ -5,6 +5,7 @@ export default function Banner({ title }) {
     <section className="pt-48 pb-32 relative overflow-hidden">
       <div className="absolute top-0 left-0 h-full w-full z-[1] bg-secondary/40"></div>
       <div className="absolute top-0 left-0 h-full w-full ">
+        <div className="h-full w-full banner-zoom">
           <Image
             src='/hero.png'
             alt="Banner Background"
@@ -15,6 +16,7 @@ export default function Banner({ title }) {
             className="object-cover object-center h-full w-full"
             priority
           />
+        </div>
       </div>
       <div className="container relative z-[2]">
         <h1 className="h2 text-white text-center">

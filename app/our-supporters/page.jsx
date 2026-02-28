@@ -1,0 +1,117 @@
+import Link from 'next/link';
+import Banner from '@/components/Banner';
+import Image from '@/helpers/Image';
+import { dbConnect } from '@helpers/db';
+import Page from '@/models/Page';
+import Post from '@/models/Post';
+
+export const dynamic = 'force-dynamic';
+
+function SponsorCard({ sponsor }) {
+  const main = sponsor?.templateData?.main || {};
+  const title = String(sponsor?.title || 'Sponsor').trim();
+  const image = String(main?.image || '').trim();
+  const link = String(main?.link || '').trim();
+  const content = String(main?.content || '').trim();
+
+  return (
+    <article className="card flex h-full flex-col gap-4 border-2 border-primary">
+      <div className="relative w-full aspect-[4/3] overflow-hidden rounded-primary bg-gray-100">
+        {image ? (
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-contain"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            quality={58}
+          />
+        ) : null}
+      </div>
+
+      <div className="flex flex-1 flex-col gap-3">
+        <h2 className="h4">{title}</h2>
+
+        {content ? (
+          <div
+            className="prose prose-sm max-w-none text-gray-600"
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
+        ) : null}
+
+        {link ? (
+          <div className="mt-auto pt-2">
+            <Link
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button button--secondary w-full"
+            >
+              Visit Site
+            </Link>
+          </div>
+        ) : null}
+      </div>
+    </article>
+  );
+}
+
+export default async function OurSupportersPage() {
+  await dbConnect();
+
+  const [page, sponsors] = await Promise.all([
+    Page.findOne({ slug: 'our-supporters' }).lean(),
+    Post.find({ postTypeKey: 'sponsors', status: 'published' })
+      .sort({ publishedAt: -1, createdAt: -1 })
+      .lean(),
+  ]);
+
+  const pageTitle = String(page?.title || '').trim() || 'Our Supporters';
+  const templateData = page?.templateData || {};
+  const topContent = String(templateData?.top?.content || '').trim();
+  const bottomContent = String(templateData?.bottom?.content || '').trim();
+  const safeSponsors = JSON.parse(JSON.stringify(sponsors || [])).sort((a, b) => {
+    const aPrimary = a?.templateData?.main?.isPrimarySponsor ? 1 : 0;
+    const bPrimary = b?.templateData?.main?.isPrimarySponsor ? 1 : 0;
+    return bPrimary - aPrimary;
+  });
+
+  return (
+    <>
+      <Banner title={pageTitle} />
+
+      <section className="py-12">
+        <div className="container space-y-8">
+          {topContent ? (
+            <div
+              className="prose max-w-none"
+              dangerouslySetInnerHTML={{ __html: topContent }}
+            />
+          ) : null}
+
+          {safeSponsors.length ? (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {safeSponsors.map((sponsor) => (
+                <SponsorCard
+                  key={String(sponsor?._id)}
+                  sponsor={sponsor}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="card text-sm text-gray-600">
+              No sponsors published yet.
+            </div>
+          )}
+
+          {bottomContent ? (
+            <div
+              className="prose max-w-none"
+              dangerouslySetInnerHTML={{ __html: bottomContent }}
+            />
+          ) : null}
+        </div>
+      </section>
+    </>
+  );
+}

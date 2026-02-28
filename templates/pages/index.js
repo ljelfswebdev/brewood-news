@@ -3,6 +3,8 @@ import { HOMEPAGE_TEMPLATE } from './homepage';
 import { ABOUT_TEMPLATE } from './about';
 import { CLUB_HIRE_TEMPLATE } from './clubHire';
 import { CLUB_HISTORY_TEMPLATE } from './clubHistory';
+import { LEGALS_TEMPLATE } from './legals';
+import { SPONSORS_PAGE_TEMPLATE } from './sponsors';
 
 export const PAGE_TEMPLATES = {
   homepage: {
@@ -26,5 +28,15 @@ export const PAGE_TEMPLATES = {
     key: 'clubHistory',
     label: 'Club History',
     sections: CLUB_HISTORY_TEMPLATE,
+  },
+  legals: {
+    key: 'legals',
+    label: 'Legals',
+    sections: LEGALS_TEMPLATE,
+  },
+  sponsors: {
+    key: 'sponsors',
+    label: 'Sponsors',
+    sections: SPONSORS_PAGE_TEMPLATE,
   },
 };

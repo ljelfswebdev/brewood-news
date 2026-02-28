@@ -38,3 +38,36 @@ body {
   cursor: not-allowed;
   opacity: 0.5;
 }
+
+.ck-content ul,
+.prose ul {
+  list-style: disc;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.ck-content ol,
+.prose ol {
+  list-style: decimal;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.ck-content li,
+.prose li {
+  margin: 0.25rem 0;
+}
+
+@keyframes bannerKenBurns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+.banner-zoom {
+  animation: bannerKenBurns 10s ease-in-out infinite alternate;
+  will-change: transform;
+}

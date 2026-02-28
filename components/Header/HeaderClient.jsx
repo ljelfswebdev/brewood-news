@@ -46,20 +46,8 @@ export default function HeaderClient({ items }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const knownRoutes = [
-    '/',
-    '/about',
-    '/contact-us',
-    '/news',
-    '/committee',
-  ];
-
-  const isKnownRoute =
-    knownRoutes.includes(pathname || '') ||
-    (pathname || '').startsWith('/news/') ||
-    (pathname || '').startsWith('/admin');
-
-  const isScrolled = !isKnownRoute || scrolled;
+  const isAdminRoute = (pathname || '').startsWith('/admin');
+  const isScrolled = isAdminRoute || scrolled;
 
   const headerClass = [
     'fixed top-0 left-0 w-full z-50 transition-all duration-200', // ✅ was z-30
