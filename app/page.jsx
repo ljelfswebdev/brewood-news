@@ -1,13 +1,9 @@
-// app/page.jsx (or app/(site)/page.jsx)
-import dynamic from 'next/dynamic';
 import { dbConnect } from '@helpers/db';
 import Page from '@/models/Page';
 import HeroSection from '@/components/Homepage/HeroSection';
 import SponsorsSection from '@/components/Homepage/SponsorsSection';
-
-// ✅ client-only sections
-const BlueBanner = dynamic(() => import('@/components/Homepage/BlueBanner'), { ssr: false });
-const FeaturesSection = dynamic(() => import('@/components/Homepage/FeaturesSection'), { ssr: false });
+import BlueBanner from '@/components/Homepage/BlueBanner';
+import FeaturesSection from '@/components/Homepage/FeaturesSection';
 
 // ✅ server component (fetches from DB) — DO NOT ssr:false this
 import NewsSlider from '@/components/Homepage/NewsSlider';

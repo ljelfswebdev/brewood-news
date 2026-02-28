@@ -7,11 +7,6 @@
 @import "../styles/typography.css";
 @import "../styles/form.css";
 
-@import '@fontsource/poppins/400.css';
-@import '@fontsource/poppins/600.css';
-@import '@fontsource/poppins/700.css';
-@import '@fontsource/bungee';
-
 
 
 :root {
@@ -24,7 +19,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-poppins), sans-serif;
 }
 
 .container {
