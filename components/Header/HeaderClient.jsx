@@ -50,18 +50,18 @@ export default function HeaderClient({ items }) {
   const isScrolled = isAdminRoute || scrolled;
 
   const headerClass = [
-    'fixed top-0 left-0 w-full z-50 transition-all duration-200', // ✅ was z-30
+    'top-0 left-0 w-full z-50',
     open
-      ? 'bg-transparent shadow-none text-white'
+      ? 'fixed bg-transparent shadow-none text-white'
       : isScrolled
-      ? 'bg-white shadow-md text-primary'
-      : 'bg-transparent shadow-none text-white',
+      ? 'fixed bg-white shadow-md text-primary'
+      : 'absolute bg-transparent shadow-none text-white',
   ].join(' ');
 
   const logoSize = isScrolled ? 60 : 140;
 
   const logoClass = [
-    'absolute top-2 left-4 lg:left-0 transition-all duration-200',
+    'absolute top-2 left-4 lg:left-0',
     isScrolled ? '!top-1/2 -translate-y-1/2' : 'top-0 translate-y-0',
   ].join(' ');
 
@@ -85,7 +85,16 @@ export default function HeaderClient({ items }) {
   return (
     <>
       {/* HEADER */}
-      <div className={headerClass}>
+      <motion.div
+        className={headerClass}
+        initial={false}
+        animate={
+          !open && isScrolled
+            ? { y: [-18, 0], opacity: [0, 1] }
+            : { y: 0, opacity: 1 }
+        }
+        transition={{ duration: 0.28, ease: 'easeOut' }}
+      >
         <div className="container flex items-center justify-end py-6 lg:py-8 gap-4 relative">
           {/* LOGO */}
           <Link
@@ -179,7 +188,7 @@ export default function HeaderClient({ items }) {
             />
           </button>
         </div>
-      </div>
+      </motion.div>
 
       {/* MOBILE OVERLAY MENU */}
       <AnimatePresence>
