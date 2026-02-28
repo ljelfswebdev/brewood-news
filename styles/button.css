@@ -23,14 +23,14 @@
 }
 
 .button--secondary{
-    color: white;
-    border-color: var(--secondary);
-    background-color: var(--secondary);
+    color: var(--primary);
+    border-color: var(--primary);
+    background-color: white;
 }
 
 .button--secondary:hover{
-    color: var(--secondary);
-    background-color: white;
+    color: white;
+    background-color: var(--primary);
 }
 
 .button--tertiary{
