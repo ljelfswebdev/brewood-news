@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import Image from '@/helpers/Image';
-import { useRef } from 'react';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -14,9 +13,6 @@ export default function ClubHireContent({
   body = '',
   images = [],
 }) {
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
-
   const safeImages = useMemo(
     () =>
       (Array.isArray(images) ? images : [])
@@ -74,11 +70,11 @@ export default function ClubHireContent({
           <div className="relative">
             <Swiper
               modules={[Navigation]}
-              onBeforeInit={(swiper) => {
-                swiper.params.navigation.prevEl = prevRef.current;
-                swiper.params.navigation.nextEl = nextRef.current;
+              className="club-hire-swiper"
+              navigation={{
+                prevEl: '.club-hire-prev',
+                nextEl: '.club-hire-next',
               }}
-              navigation
               spaceBetween={16}
               slidesPerView={1}
               breakpoints={{
@@ -109,7 +105,6 @@ export default function ClubHireContent({
 
             <button
               type="button"
-              ref={prevRef}
               className="club-hire-prev absolute left-2 top-1/2 z-10 h-10 w-10 -translate-y-1/2"
               aria-label="Previous gallery images"
             >
@@ -124,7 +119,6 @@ export default function ClubHireContent({
 
             <button
               type="button"
-              ref={nextRef}
               className="club-hire-next absolute right-2 top-1/2 z-10 h-10 w-10 -translate-y-1/2"
               aria-label="Next gallery images"
             >

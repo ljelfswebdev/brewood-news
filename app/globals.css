@@ -127,6 +127,11 @@ body {
   display: none !important;
 }
 
+.club-hire-swiper > .swiper-button-prev,
+.club-hire-swiper > .swiper-button-next {
+  display: none !important;
+}
+
 @media (max-width: 1023px) {
   .reveal-base,
   .reveal-fade-up,
