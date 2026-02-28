@@ -122,6 +122,11 @@ body {
     caretBlink 850ms step-end 2 forwards;
 }
 
+.club-hire-prev::after,
+.club-hire-next::after {
+  display: none !important;
+}
+
 @media (max-width: 1023px) {
   .reveal-base,
   .reveal-fade-up,

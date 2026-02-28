@@ -110,7 +110,7 @@ export default function ClubHireContent({
             <button
               type="button"
               ref={prevRef}
-              className="absolute left-2 top-1/2 z-10 h-10 w-10 -translate-y-1/2"
+              className="club-hire-prev absolute left-2 top-1/2 z-10 h-10 w-10 -translate-y-1/2"
               aria-label="Previous gallery images"
             >
               <Image
@@ -125,7 +125,7 @@ export default function ClubHireContent({
             <button
               type="button"
               ref={nextRef}
-              className="absolute right-2 top-1/2 z-10 h-10 w-10 -translate-y-1/2"
+              className="club-hire-next absolute right-2 top-1/2 z-10 h-10 w-10 -translate-y-1/2"
               aria-label="Next gallery images"
             >
               <Image
