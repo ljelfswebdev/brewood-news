@@ -39,15 +39,20 @@ export default function CommitteeContent({ members = [], emptyText = 'No committ
           {members.map((member, index) => {
             const displayName = getDisplayName(member);
             const firstName = getFirstName(member);
+            const baseDelay = index * 45;
 
             return (
               <Reveal
                 as="article"
                 key={member._id}
                 className="text-center flex flex-col items-center gap-4"
-                delay={index * 100}
+                delay={baseDelay}
               >
-                <Reveal className="relative h-48 w-48 overflow-hidden rounded-full border-4 border-primary" variant="fade-in" delay={80 + index * 100}>
+                <Reveal
+                  className="relative h-48 w-48 overflow-hidden rounded-full border-4 border-primary"
+                  variant="fade-in"
+                  delay={baseDelay + 20}
+                >
                   <Image
                     src={member.image}
                     alt={displayName}
@@ -60,17 +65,17 @@ export default function CommitteeContent({ members = [], emptyText = 'No committ
                   as="h2"
                   text={displayName}
                   className="h4"
-                  delay={120 + index * 100}
+                  delay={baseDelay + 35}
                 />
                 {!!String(member.position || '').trim() && (
-                  <Reveal delay={160 + index * 100}>
+                  <Reveal delay={baseDelay + 45}>
                     <p className="text text-gray-600 -mt-2">
                       {member.position}
                     </p>
                   </Reveal>
                 )}
 
-                <Reveal delay={220 + index * 100}>
+                <Reveal delay={baseDelay + 60}>
                   <button
                     type="button"
                     className="button button--primary mt-auto"
