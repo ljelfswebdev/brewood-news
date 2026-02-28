@@ -121,3 +121,21 @@ body {
     typewriterReveal 900ms steps(var(--typewriter-steps), end) forwards,
     caretBlink 850ms step-end 2 forwards;
 }
+
+@media (max-width: 767px) {
+  .reveal-base,
+  .reveal-fade-up,
+  .reveal-fade-in,
+  .reveal-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .typewriter-text,
+  .typewriter-visible {
+    max-width: none;
+    border-right: 0;
+    animation: none;
+  }
+}

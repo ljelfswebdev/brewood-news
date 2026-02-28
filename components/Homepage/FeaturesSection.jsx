@@ -21,11 +21,22 @@ export default function FeaturesSection({ data }) {
       <div className="container">
         <div className="space-y-4 flex flex-col items-center justify-center">
           {subtitle && (
-            <TypewriterText
-              as="p"
-              text={subtitle}
-              className="h3 text-xs uppercase tracking-[0.2em] text-secondary text-center"
-            />
+            <>
+              <div className="hidden lg:block">
+                <TypewriterText
+                  as="p"
+                  text={subtitle}
+                  className="h3 text-xs uppercase tracking-[0.2em] text-secondary text-center"
+                />
+              </div>
+              <div className="lg:hidden">
+                <Reveal>
+                  <p className="h3 text-xs uppercase tracking-[0.2em] text-secondary text-center">
+                    {subtitle}
+                  </p>
+                </Reveal>
+              </div>
+            </>
           )}
 
           {text && (
