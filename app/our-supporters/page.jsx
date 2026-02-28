@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Banner from '@/components/Banner';
 import Reveal from '@/components/animations/Reveal';
-import TypewriterText from '@/components/animations/TypewriterText';
 import Image from '@/helpers/Image';
 import { dbConnect } from '@helpers/db';
 import Page from '@/models/Page';
@@ -31,8 +30,8 @@ function SponsorCard({ sponsor }) {
         ) : null}
       </div>
 
-        <div className="flex flex-1 flex-col gap-3">
-        <TypewriterText as="h2" text={title} className="h4" />
+      <div className="flex flex-1 flex-col gap-3">
+        <h2 className="h4 break-words">{title}</h2>
 
         {content ? (
           <Reveal delay={100}>

@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -20,6 +21,7 @@ export default function NewsSliderClient({ posts }) {
 
         <Swiper
           modules={[Pagination, Autoplay]}
+          className="!pb-[10px]"
           slidesPerView={1}
           spaceBetween={16}
           loop={shouldLoop}
@@ -47,6 +49,12 @@ export default function NewsSliderClient({ posts }) {
         {/* ✅ PAGINATION – centered */}
         <div className="flex justify-center w-fit mx-auto">
           <div className="news-pagination flex gap-2" />
+        </div>
+
+        <div className="flex justify-center">
+          <Link href="/news" className="button button--primary">
+            View All News
+          </Link>
         </div>
       </div>
     </section>

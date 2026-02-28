@@ -23,12 +23,21 @@ export default function Banner({ title }) {
         </Reveal>
       </div>
       <div className="container relative z-[2]">
-        <TypewriterText
-          as="h1"
-          text={title}
-          className="h2 text-white text-center"
-          delay={120}
-        />
+        <div className="hidden lg:block">
+          <TypewriterText
+            as="h1"
+            text={title}
+            className="h2 text-white text-center"
+            delay={120}
+          />
+        </div>
+        <div className="lg:hidden">
+          <Reveal>
+            <h1 className="h2 text-white text-center max-w-[900px] mx-auto">
+              {title}
+            </h1>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

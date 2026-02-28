@@ -5,6 +5,8 @@ import { CLUB_HIRE_TEMPLATE } from './clubHire';
 import { CLUB_HISTORY_TEMPLATE } from './clubHistory';
 import { LEGALS_TEMPLATE } from './legals';
 import { SPONSORS_PAGE_TEMPLATE } from './sponsors';
+import { MEMBERSHIP_TEMPLATE } from './membership';
+import { PREMIER_DRAW_TEMPLATE } from './premierDraw';
 
 export const PAGE_TEMPLATES = {
   homepage: {
@@ -38,5 +40,15 @@ export const PAGE_TEMPLATES = {
     key: 'sponsors',
     label: 'Sponsors',
     sections: SPONSORS_PAGE_TEMPLATE,
+  },
+  membership: {
+    key: 'membership',
+    label: 'Membership',
+    sections: MEMBERSHIP_TEMPLATE,
+  },
+  premierDraw: {
+    key: 'premierDraw',
+    label: 'Premier Draw',
+    sections: PREMIER_DRAW_TEMPLATE,
   },
 };

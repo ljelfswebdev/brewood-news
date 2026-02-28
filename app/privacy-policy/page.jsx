@@ -21,7 +21,7 @@ export default async function PrivacyPolicyPage() {
 
       <section className="py-12">
         <div className="container">
-          <div className="mx-auto max-w-[1024px]">
+          <div className="mx-auto">
             {body ? (
               <div
                 className="prose max-w-none"

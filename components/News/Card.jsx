@@ -17,7 +17,7 @@ export default function NewsCard({ post, delay = 0 }) {
     introText.length > 180 ? `${introText.slice(0, 177)}…` : introText;
 
   return (
-    <Reveal as="article" className="card flex flex-col h-full" delay={delay}>
+    <Reveal as="article" className="card flex flex-col h-full hover:shadow-md transition" delay={delay}>
       <Reveal delay={80} variant="fade-in">
         <Link
           href={`/news/${post.slug}`}

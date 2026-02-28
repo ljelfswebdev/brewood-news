@@ -1,23 +1,18 @@
 import Banner from '@/components/Banner';
+import Link from 'next/link';
 import { dbConnect } from '@helpers/db';
 import Page from '@/models/Page';
 
 export const dynamic = 'force-dynamic';
 
-export const metadata = {
-  title: 'Cookie Policy',
-  description: 'How Brewood Cricket Club uses cookies on this website.',
-};
-
-export default async function CookiePolicyPage() {
+export default async function PremierDrawPage() {
   await dbConnect();
 
   const page =
-    (await Page.findOne({ slug: 'cookie-policy' }).lean()) ||
-    (await Page.findOne({ title: /cookie policy/i }).lean()) ||
-    (await Page.findOne({ templateKey: 'legals' }).sort({ createdAt: 1 }).lean());
+    (await Page.findOne({ slug: 'premier-draw' }).lean()) ||
+    (await Page.findOne({ templateKey: 'premierDraw' }).sort({ createdAt: 1 }).lean());
 
-  const pageTitle = String(page?.title || '').trim() || 'Cookie Policy';
+  const pageTitle = String(page?.title || '').trim() || 'Premier Draw';
   const templateData = page?.templateData || {};
   const body = String(templateData?.content?.body || '').trim();
 
@@ -35,9 +30,15 @@ export default async function CookiePolicyPage() {
               />
             ) : (
               <div className="card text-sm text-gray-600">
-                No cookie policy content has been added yet.
+                No premier draw content has been added yet.
               </div>
             )}
+
+            <div className="pt-8">
+              <Link href="/contact-us" className="button button--primary">
+                Contact Us
+              </Link>
+            </div>
           </div>
         </div>
       </section>

@@ -82,9 +82,9 @@ export default function ClubHireContent({
               spaceBetween={16}
               slidesPerView={1}
               breakpoints={{
-                640: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-                1280: { slidesPerView: 4 },
+                640: { slidesPerView: 1.5 },
+                768: { slidesPerView: 2.5 },
+                1024: { slidesPerView: 3.5 },
               }}
             >
               {safeImages.map((src, index) => (
@@ -155,11 +155,17 @@ export default function ClubHireContent({
           >
             <button
               type="button"
-              className="absolute right-3 top-3 z-20 h-10 w-10 rounded-full bg-black/70 text-white"
+              className="absolute right-3 top-3 z-20 h-10 w-10"
               onClick={closeModal}
               aria-label="Close image preview"
             >
-              ✕
+              <Image
+                src="/close.svg"
+                alt="Close"
+                width={32}
+                height={32}
+                className="h-8 w-8"
+              />
             </button>
 
             <button

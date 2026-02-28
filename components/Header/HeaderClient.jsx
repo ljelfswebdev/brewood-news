@@ -61,7 +61,7 @@ export default function HeaderClient({ items }) {
   const logoSize = isScrolled ? 60 : 140;
 
   const logoClass = [
-    'absolute top-2 left-4 lg:left-0',
+    'absolute top-2 left-4 xl:left-0',
     isScrolled ? '!top-1/2 -translate-y-1/2' : 'top-0 translate-y-0',
   ].join(' ');
 

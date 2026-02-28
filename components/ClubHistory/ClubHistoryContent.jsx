@@ -104,7 +104,7 @@ export default function ClubHistoryContent({ blocks = [] }) {
   const items = Array.isArray(blocks) ? blocks : [];
 
   return (
-    <div className="mx-auto max-w-[1024px] space-y-8">
+    <div className="mx-auto  space-y-8">
       {items.map((block, index) => {
         if (block?.blockType === 'richText' && String(block?.content || '').trim()) {
           return (

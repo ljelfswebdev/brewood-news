@@ -38,7 +38,12 @@ function PrimarySponsorCard({ sponsor }) {
         </div>
 
         <div className="w-full space-y-4">
-          <div className="h3 text-primary">{title}</div>
+          <TypewriterText
+            as="div"
+            text={title}
+            className="h4 text-primary"
+            delay={120}
+          />
 
           {/* ✅ no limiting for primary */}
           {rich ? (
@@ -88,7 +93,12 @@ function SponsorCard({ sponsor }) {
         </div>
 
         <div className="gap-2 flex flex-col grow">
-          <div className="h4">{title}</div>
+          <TypewriterText
+            as="div"
+            text={title}
+            className="h5"
+            delay={120}
+          />
 
           {descHtml ? (
             <div
@@ -162,6 +172,7 @@ export default function SponsorsSectionClient({ sponsors = [] }) {
           <div className="relative">
             <Swiper
               modules={[Pagination, Autoplay]}
+              className="!pb-[10px]"
               pagination={{ clickable: true, el: '.sponsors-pagination' }}
               autoplay={
                 others.length > 3

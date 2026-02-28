@@ -2,6 +2,7 @@ import { dbConnect } from '@helpers/db';
 import Post from '@/models/Post';
 import Banner from '@/components/Banner';
 import CommitteeContent from '@/components/committee/CommitteeContent';
+import TypewriterText from '@/components/animations/TypewriterText';
 
 function normalizeMember(post) {
   const main = post?.templateData?.main || {};
@@ -49,7 +50,11 @@ export default async function CommitteePage() {
       <section className="py-12">
         <div className="container space-y-12">
           <div className="space-y-6">
-            <h2 className=" text-center">Trustees</h2>
+            <TypewriterText
+              as="h2"
+              text="Trustees"
+              className="h3 text-center"
+            />
             <CommitteeContent
               members={trusteeMembers}
               emptyText="No trustees published yet."
@@ -57,7 +62,11 @@ export default async function CommitteePage() {
           </div>
 
           <div className="space-y-6">
-            <h2 className=" text-center">Committee</h2>
+            <TypewriterText
+              as="h2"
+              text="Committee"
+              className="h3 text-center"
+            />
             <CommitteeContent
               members={committeeMembers}
               emptyText="No committee members published yet."
