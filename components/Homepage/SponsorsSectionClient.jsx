@@ -198,7 +198,7 @@ export default function SponsorsSectionClient({ sponsors = [] }) {
               ))}
             </Swiper>
 
-            <div className="mt-6 flex justify-center">
+            <div className="mt-6 flex justify-center w-fit mx-auto">
               <div className="sponsors-pagination flex gap-2" />
             </div>
 
