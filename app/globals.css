@@ -10,7 +10,8 @@
 
 
 :root {
-  --primary: #4A56A6;
+  /* --primary: #4A56A6; */
+  --primary: #1F317C;
   --secondary: #A5A5A6;
   --tertiary: #A86FA8;
   --black: #1a1a1a;

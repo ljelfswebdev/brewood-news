@@ -19,7 +19,7 @@ export default function Banner({ title }) {
         </div>
       </div>
       <div className="container relative z-[2]">
-        <h1 className="h2 text-white text-center">
+        <h1 className="text-white text-center">
           {title}
         </h1>
       </div>

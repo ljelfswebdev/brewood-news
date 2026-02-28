@@ -18,7 +18,7 @@ function getFirstName(member) {
   return title.split(/\s+/)[0] || 'Member';
 }
 
-export default function CommitteeContent({ members = [] }) {
+export default function CommitteeContent({ members = [], emptyText = 'No committee members published yet.' }) {
   const [activeMember, setActiveMember] = useState(null);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function CommitteeContent({ members = [] }) {
   return (
     <>
       {members.length ? (
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {members.map((member) => {
             const displayName = getDisplayName(member);
             const firstName = getFirstName(member);
@@ -72,7 +72,7 @@ export default function CommitteeContent({ members = [] }) {
         </div>
       ) : (
         <div className="card text-center text-sm text-gray-600">
-          No committee members published yet.
+          {emptyText}
         </div>
       )}
 
@@ -103,7 +103,7 @@ export default function CommitteeContent({ members = [] }) {
                 className="h-10 w-10"
                 onClick={() => setActiveMember(null)}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#4a56a6"/><path fill="#fff" d="M23.69 8.227a1.375 1.375 0 0 0-.17-1.912 1.32 1.32 0 0 0-1.879.173L16 13.38l-5.641-6.892a1.32 1.32 0 0 0-1.88-.173 1.375 1.375 0 0 0-.17 1.912l5.954 7.273-5.954 7.273a1.375 1.375 0 0 0 .17 1.912c.568.48 1.41.403 1.88-.173L16 17.62l5.641 6.892c.47.576 1.313.653 1.88.173.566-.479.64-1.335.17-1.912L17.737 15.5z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#1F317C"/><path fill="#fff" d="M23.69 8.227a1.375 1.375 0 0 0-.17-1.912 1.32 1.32 0 0 0-1.879.173L16 13.38l-5.641-6.892a1.32 1.32 0 0 0-1.88-.173 1.375 1.375 0 0 0-.17 1.912l5.954 7.273-5.954 7.273a1.375 1.375 0 0 0 .17 1.912c.568.48 1.41.403 1.88-.173L16 17.62l5.641 6.892c.47.576 1.313.653 1.88.173.566-.479.64-1.335.17-1.912L17.737 15.5z"/></svg>
               </button>
             </div>
 

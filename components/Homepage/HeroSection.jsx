@@ -100,7 +100,7 @@ export default function HeroSection({ data }) {
               {/* Content */}
               <div className="container">
                 <div className="relative z-[2] py-16 text-white space-y-4 flex flex-col items-center justify-center">
-                  {slide.title && <h1 className="h2 text-center">{slide.title}</h1>}
+                  {slide.title && <h1 className="text-center">{slide.title}</h1>}
 
                   {slide.text && (
                     <div

@@ -3,6 +3,7 @@ import { NEWS_POST_TEMPLATE } from './news';
 import { SERVICES_POST_TEMPLATE } from './services';
 import { SPONSORS_POST_TEMPLATE } from './sponsors';
 import { COMMITTEE_POST_TEMPLATE } from './committee';
+import { TRUSTEE_POST_TEMPLATE } from './trustee';
 // import { JOBS_POST_TEMPLATE } from './jobs'; etc...
 
 export const POST_TYPE_TEMPLATES = {
@@ -25,6 +26,11 @@ export const POST_TYPE_TEMPLATES = {
     key: 'committee',
     label: 'Committee Member',
     template: COMMITTEE_POST_TEMPLATE,
+  },
+    trustee: {
+    key: 'trustee',
+    label: 'Trustee Member',
+    template: TRUSTEE_POST_TEMPLATE,
   },
   // jobs: { key: 'jobs', label: 'Job', template: JOBS_POST_TEMPLATE },
 };

@@ -18,27 +18,51 @@ function normalizeMember(post) {
 }
 
 export default async function CommitteePage() {
-  let posts = [];
+  let committeePosts = [];
+  let trusteePosts = [];
   try {
     await dbConnect();
-    posts = await Post.find({
-      postTypeKey: 'committee',
-      status: 'published',
-    })
-      .sort({ sortOrder: 1, createdAt: 1 })
-      .lean();
+    [committeePosts, trusteePosts] = await Promise.all([
+      Post.find({
+        postTypeKey: 'committee',
+        status: 'published',
+      })
+        .sort({ sortOrder: 1, createdAt: 1 })
+        .lean(),
+      Post.find({
+        postTypeKey: 'trustee',
+        status: 'published',
+      })
+        .sort({ sortOrder: 1, createdAt: 1 })
+        .lean(),
+    ]);
   } catch (error) {
     console.error('Committee page load failed:', error?.message || error);
   }
 
-  const members = (posts || []).map(normalizeMember);
+  const committeeMembers = (committeePosts || []).map(normalizeMember);
+  const trusteeMembers = (trusteePosts || []).map(normalizeMember);
 
   return (
     <main>
       <Banner title="Committee" />
       <section className="py-12">
-        <div className="container">
-          <CommitteeContent members={members} />
+        <div className="container space-y-12">
+          <div className="space-y-6">
+            <h2 className="h3 text-center">Trustees</h2>
+            <CommitteeContent
+              members={trusteeMembers}
+              emptyText="No trustees published yet."
+            />
+          </div>
+
+          <div className="space-y-6">
+            <h2 className="h3 text-center">Committee</h2>
+            <CommitteeContent
+              members={committeeMembers}
+              emptyText="No committee members published yet."
+            />
+          </div>
         </div>
       </section>
     </main>

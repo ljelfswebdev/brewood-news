@@ -3,7 +3,7 @@ export default function SocialIcons({ name, size = 22 }) {
   const props = {
     width: size,
     height: size,
-    fill: '#4A56A6',
+    fill: '#1F317C',
     viewBox: '0 0 512 512',
     'aria-hidden': 'true',
   };
