@@ -49,7 +49,7 @@ export default async function CommitteePage() {
       <section className="py-12">
         <div className="container space-y-12">
           <div className="space-y-6">
-            <h2 className="h3 text-center">Trustees</h2>
+            <h2 className=" text-center">Trustees</h2>
             <CommitteeContent
               members={trusteeMembers}
               emptyText="No trustees published yet."
@@ -57,7 +57,7 @@ export default async function CommitteePage() {
           </div>
 
           <div className="space-y-6">
-            <h2 className="h3 text-center">Committee</h2>
+            <h2 className=" text-center">Committee</h2>
             <CommitteeContent
               members={committeeMembers}
               emptyText="No committee members published yet."
