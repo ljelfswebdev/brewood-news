@@ -58,6 +58,7 @@ export default async function CommitteePage() {
             <CommitteeContent
               members={trusteeMembers}
               emptyText="No trustees published yet."
+              gridClassName="lg:grid-cols-3"
             />
           </div>
 
@@ -70,6 +71,7 @@ export default async function CommitteePage() {
             <CommitteeContent
               members={committeeMembers}
               emptyText="No committee members published yet."
+              gridClassName="lg:grid-cols-4"
             />
           </div>
         </div>

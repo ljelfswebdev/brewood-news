@@ -8,6 +8,7 @@ export default function Reveal({
   variant = 'fade-up',
   delay = 0,
   as = 'div',
+  ...rest
 }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -45,6 +46,7 @@ export default function Reveal({
         className,
       ].join(' ')}
       style={{ transitionDelay: `${delay}ms` }}
+      {...rest}
     >
       {children}
     </Component>

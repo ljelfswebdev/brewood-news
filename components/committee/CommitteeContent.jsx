@@ -20,7 +20,11 @@ function getFirstName(member) {
   return title.split(/\s+/)[0] || 'Member';
 }
 
-export default function CommitteeContent({ members = [], emptyText = 'No committee members published yet.' }) {
+export default function CommitteeContent({
+  members = [],
+  emptyText = 'No committee members published yet.',
+  gridClassName = 'lg:grid-cols-3',
+}) {
   const [activeMember, setActiveMember] = useState(null);
 
   useEffect(() => {
@@ -35,7 +39,7 @@ export default function CommitteeContent({ members = [], emptyText = 'No committ
   return (
     <>
       {members.length ? (
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className={`grid gap-8 sm:grid-cols-2 ${gridClassName}`.trim()}>
           {members.map((member, index) => {
             const displayName = getDisplayName(member);
             const firstName = getFirstName(member);
@@ -43,13 +47,15 @@ export default function CommitteeContent({ members = [], emptyText = 'No committ
 
             return (
               <Reveal
-                as="article"
+                as="button"
                 key={member._id}
-                className="text-center flex flex-col items-center gap-4"
+                type="button"
+                className="text-center flex flex-col items-center gap-4 w-full bg-transparent border-0 p-0 text-inherit cursor-pointer"
                 delay={baseDelay}
+                onClick={() => setActiveMember(member)}
               >
                 <Reveal
-                  className="relative h-48 w-48 overflow-hidden rounded-full border-4 border-primary"
+                  className="relative w-full aspect-[4/3] overflow-hidden rounded-primary border-4 border-primary"
                   variant="fade-in"
                   delay={baseDelay + 20}
                 >
@@ -76,13 +82,9 @@ export default function CommitteeContent({ members = [], emptyText = 'No committ
                 )}
 
                 <Reveal delay={baseDelay + 60}>
-                  <button
-                    type="button"
-                    className="button button--primary mt-auto"
-                    onClick={() => setActiveMember(member)}
-                  >
+                  <span className="button button--primary mt-auto">
                     Read More About {firstName}
-                  </button>
+                  </span>
                 </Reveal>
               </Reveal>
             );
@@ -132,7 +134,7 @@ export default function CommitteeContent({ members = [], emptyText = 'No committ
             </div>
 
             <div className="space-y-5 overflow-y-auto pr-1 max-h-[calc(80dvh-8rem)]">
-              <div className="relative mx-auto h-44 w-44 overflow-hidden rounded-full border-2 border-primary">
+              <div className="relative mx-auto w-full max-w-[400px] aspect-[4/3] overflow-hidden rounded-primary border-2 border-primary">
                 <Image
                   src={activeMember.image}
                   alt={getDisplayName(activeMember)}
