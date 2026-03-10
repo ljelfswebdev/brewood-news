@@ -114,6 +114,7 @@ body {
   max-width: 0;
   border-right: 2px solid transparent;
   vertical-align: bottom;
+  padding:2px 0px;
 }
 
 .typewriter-visible {
