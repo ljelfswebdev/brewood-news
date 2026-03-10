@@ -26,12 +26,12 @@ export default function FeaturesSection({ data }) {
                 <TypewriterText
                   as="p"
                   text={subtitle}
-                  className="h3 text-xs uppercase tracking-[0.2em] text-secondary text-center"
+                  className="h3 text-xs uppercase text-secondary text-center"
                 />
               </div>
               <div className="lg:hidden">
                 <Reveal>
-                  <p className="h3 text-xs uppercase tracking-[0.2em] text-secondary text-center">
+                  <p className="h3 text-xs uppercase text-secondary text-center">
                     {subtitle}
                   </p>
                 </Reveal>

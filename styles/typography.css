@@ -25,9 +25,9 @@ body {
   
     /* H5 */
     --font-min-h5: 20px;
-    --font-max-h5: 24px;
-    --lh-min-h5: 24px;
-    --lh-max-h5: 28px;
+    --font-max-h5: 2px;
+    --lh-min-h5: 28px;
+    --lh-max-h5: 32px;
   
     /* H6 */
     --font-min-h6: 18px;
