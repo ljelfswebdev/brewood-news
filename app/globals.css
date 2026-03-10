@@ -144,8 +144,12 @@ body {
 
   .typewriter-text,
   .typewriter-visible {
+    display: inline;
+    overflow: visible;
+    white-space: normal;
     max-width: none;
     border-right: 0;
+    vertical-align: baseline;
     animation: none;
   }
 }
